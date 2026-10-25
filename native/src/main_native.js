@@ -44,12 +44,8 @@
       const r = this.renderer = new CST.Renderer(screen, game); r.resize(); r.follow(0, true);
       this.ui = new CST.UI(game, r, this);
       CST.Ads.init(this); CST.Minis.init(this); this.ui.started = true;
-      // no ad SDK on this client: hide ad offers instead of falling back to the test-ad overlay (which would grant
-      // rewards without a real ad). The desktop emulator sets __ALLOW_MOCK_ADS to keep the overlay for testing.
-      if (!(CST.HS && CST.HS.sdk) && !CST.Ads.sdk() && !root.__ALLOW_MOCK_ADS) CST.Ads.enabled = false;   // with HS, each place is gated by HSGame.canShowAd
-      T.onHide && T.onHide(() => game.save());
-      if (CST.HS && CST.HS.sdk) CST.HS.flush();                // HSGame logs in (started at boot); rewards that arrived early
-      else try { T.login && T.login({ success() { }, fail() { } }); } catch (e) { }   // silent login (platform requirement)
+      CST.HS.attach(this);
+      T.onHide && T.onHide(() => this.game.save());
       this.ui.toast(game.loaded ? 'Welcome back!' : 'Welcome! Grab beef from the crate', game.loaded ? 'c_fx_heart' : 'c_box_salmon', true);
       // touch: UI first, otherwise a floating joystick
       const joy = { id: null, ox: 0, oy: 0, dx: 0, dy: 0, v: { x: 0, y: 0 }, R: 50 }; let uiId = null;
@@ -73,10 +69,10 @@
         while (acc >= STEP && n < 40) {
           if (this.paused) { acc = 0; break; }
           let v; if (this.autoplay && this.bot) v = this.bot.update(STEP); else v = r.screenToWorldDir(joy.v.x, joy.v.y);
-          game.movePlayer(v.x, v.y, STEP); game.update(STEP); acc -= STEP; n++;
+          this.game.movePlayer(v.x, v.y, STEP); this.game.update(STEP); acc -= STEP; n++;
         }
         if (n >= 40) acc = 0;
-        r.follow(dt); r.draw(dt); this.ui.update(dt); CST.Ads.update(this.paused ? 0 : dt);
+        r.follow(this.paused ? 0 : dt); r.draw(this.paused ? 0 : dt); this.ui.update(this.paused ? 0 : dt); CST.Ads.update(this.paused ? 0 : dt);
       };
       requestAnimationFrame(loop);
       root.__game = game;
@@ -85,7 +81,7 @@
 
   // ---------------- load: UI art (main package) + atlases (subpackage 'res')
   const loadRes = () => new Promise(res => {
-    if (!T.loadSubpackage) return res();
+    if (!('loadSubpackage' in T) || typeof T.loadSubpackage !== 'function') return res();
     const task = T.loadSubpackage({ name: 'res', success: () => res(), fail: e => { console.warn('subpackage', e); res(); } });
     task && task.onProgressUpdate && task.onProgressUpdate(p => { progress = Math.max(progress, (p.progress || 0) / 100 * 0.6); });
   });

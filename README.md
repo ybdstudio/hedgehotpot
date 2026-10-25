@@ -1,6 +1,8 @@
 # Hedge Hotpot Conveyor
 
-Game lẩu băng chuyền với nhân vật nhím, thay cho bản mèo trong ZIP nguồn. Toàn bộ thay đổi hiện ở local của repo `ybdstudio/hedgehotpot`; chưa commit hoặc push.
+Native TikTok: nhánh local `native/tiktok-release`, HS SDK 1.1.3. Xem [hướng dẫn và trạng thái release](docs/NATIVE_RELEASE.md). Bản native đã qua kiểm tra offline nhưng đang chờ ID/key thật để tạo ZIP upload chính thức.
+
+Game lẩu băng chuyền với nhân vật nhím, thay cho bản mèo trong ZIP nguồn. Toàn bộ thay đổi hiện ở local của repo `ybdstudio/hedgehotpot`; đã lưu checkpoint local, chưa push.
 
 ## Xem trước
 

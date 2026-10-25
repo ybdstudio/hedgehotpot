@@ -1,8 +1,8 @@
 {
-  "appid": "YOUR_TIKTOK_APP_ID",
-  "projectname": "meow-hotpot-conveyor",
+  "appid": "",
+  "projectname": "hedgehotpot",
   "compileType": "game",
-  "description": "Hedge Hotpot Conveyor – cozy hedgehog hot pot tycoon",
+  "description": "Hedge Hotpot - native hedgehog hotpot restaurant",
   "setting": {
     "es6": true,
     "minified": true,

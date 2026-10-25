@@ -1,0 +1,12 @@
+{
+  "pass": true,
+  "expected": "reject release without real configuration",
+  "exit_code": 1,
+  "missing": [
+    "TikTok App ID",
+    "HS Game ID",
+    "HS SDK key",
+    "ad unit IDs"
+  ],
+  "upload_zip_created": false
+}

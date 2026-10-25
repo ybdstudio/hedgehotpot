@@ -1,86 +1,132 @@
-/* Native presentation for CST.Minis (js/minis.js keeps the logic: rewards, eligibility, share calls).
-   Replaces the DOM parts: side buttons / chips are drawn by ui_native.js, popups use UI.popup(). */
+/* Canvas-only HS missions and reward offers. Amounts and limits are dashboard data. */
 (function (root) {
-  const CST = root.CST, M = CST.Minis;
-  const today = () => new Date().toISOString().slice(0, 10);
-  const fmt = n => { n = Math.floor(n); return n >= 1e4 ? (n / 1e3).toFixed(1) + 'k' : String(n); };
-  const TT = () => root.tt || (root.TTMinis && root.TTMinis.game) || null;
-  const can = (o, n) => !!(o && typeof o[n] === 'function' && (!o.canIUse || o.canIUse(n)));
-  M.today = today; M.chipList = [];
-
-  M.init = function (app) { this.app = app; this.bind(app.game); };
-  M.refresh = function () { };
-  M.closePop = function () { this.app.ui.closePopup(); };
-  M.chip = function (id, text, icon, life, onTap, onExpire) {
-    this.unchip(id);
-    if (typeof icon === 'string' && icon.startsWith('<')) icon = 'task';           // the web build passes an inline svg for the task clipboard
-    const ch = { id, text, icon, life, onTap, t0: Date.now() }; this.chipList.push(ch);
-    this.chips[id] = { el: { remove() { } }, exp: life ? setTimeout(() => { this.unchip(id); onExpire && onExpire(); }, life * 1000) : null };
+  const CST = root.CST, HSGame = CST.HS.sdk;
+  const M = CST.Minis = {
+    app: null, g: null, chips: {}, chipList: [], phase: 0,
+    today() { return new Date().toISOString().slice(0,10); },
+    st() { return this.g.S.minis || (this.g.S.minis = {}); },
+    init(app) { this.app = app; this.bind(app.game); },
+    closePop() { this.app.ui.closePopup(); },
+    bind(g) {
+      this.chipList = []; this.chips = {}; this.g = g; this.phase = g.phase;
+      g.on('task', event => {
+        const reward = event.reward || {}, id = g.S.taskIndex;
+        g.S.hsLastTaskReward = { id, reward };
+        this.taskOffer(g.S.hsLastTaskReward);
+      });
+      g.on('vipPaid', vip => {
+        const extra = Math.round(vip.bonus * (g.C.ADS.vipTipMult - 1));
+        this.offer('r4', 'R4', 'VIP bonus tip', 'armchair', () => this.g.gain(extra, vip.x, vip.y - 40));
+      });
+      g.on('rushEnd', ok => { if (!ok && CST.Ads.canReward('R6')) this.popRush(); });
+    },
+    chip(id, text, icon, life, onTap) {
+      this.unchip(id);
+      const ch = { id, text, icon, life: 0, onTap, elapsed: 0, expires: life || 0 };
+      this.chips[id] = ch; this.chipList.push(ch);
+    },
+    unchip(id) { delete this.chips[id]; this.chipList = this.chipList.filter(ch => ch.id !== id); },
+    offer(id, slot, title, icon, apply, life = 8) {
+      if (!CST.Ads.canReward(slot)) return;
+      const key = CST.HS.cfg.places[slot];
+      this.chip(id, title + '|' + CST.HS.rewardText(key), icon, life, () => CST.Ads.reward(slot, apply));
+    },
+    taskOffer(last) {
+      if (!last || (this.g.S.hsTaskAds || {})[last.id]) return;
+      const g = this.g, reward = last.reward;
+      this.offer('r1', 'R1', 'Extra task reward', 'task', () => {
+        const g = this.g;
+        g.S.hsTaskAds = g.S.hsTaskAds || {}; if (g.S.hsTaskAds[last.id]) return;
+        g.S.hsTaskAds[last.id] = true;
+        if (reward.coins) g.gain(reward.coins, g.player.x, g.player.y - 70, false);
+        if (reward.stars) g.S.stars += reward.stars;
+      });
+    },
+    entries() {
+      const list = [];
+      if (HSGame.has('tiktok_missions')) {
+        if (!HSGame.tiktokMission.done('profile')) list.push({ id: 'entry', icon:'ico_revisit', a:'Entry', b:'Reward', badge:true, tap:() => M.popRevisit() });
+        if (!HSGame.tiktokMission.done('shortcut')) list.push({ id:'launch', icon:'ico_add', a:'Launch', b:'Reward', badge:true, tap:() => M.popAdd() });
+      }
+      if (HSGame.has('share') && HSGame.canShare()) list.push({ id:'share', icon:'ico_share', a:'Share', b:'Reward', badge:HSGame.available('share'), tap:() => M.popShare() });
+      return list;
+    },
+    update(dt) {
+      const g = this.g, A = CST.Ads, C = g.C.ADS;
+      if (!g || this.app.paused) return;
+      for (const ch of [...this.chipList]) { ch.elapsed += dt || .12; if (ch.expires && ch.elapsed >= ch.expires) this.unchip(ch.id); }
+      // Remove stale offers as soon as dashboard/capability/cooldown changes.
+      for (const [id,slot] of [['r1','R1'],['r2','R2'],['r3','R3'],['r4','R4']]) if (this.chips[id] && !A.canReward(slot)) this.unchip(id);
+      if (g.phase > this.phase) {
+        this.phase = g.phase;
+        if (A.canContinue()) this.chip('continue', 'Continue - ad|Next restaurant phase', 'gate', 12, () => A.continuePhase());
+      }
+      if (this.chips.continue && !A.canContinue()) this.unchip('continue');
+      if (!this.chips.r1 && g.S.hsEffects && g.S.hsEffects.double_task > 0) this.taskOffer(g.S.hsLastTaskReward);
+      const waiting = g.customers.filter(c => ['QUEUE','WAIT_FOR_SUSHI','WAIT_ORDER','EXTRA_WAIT'].includes(c.state)).length;
+      if (g.S.adRushT <= 0 && waiting >= C.rushMinWaiting && !this.chips.r3) this.offer('r3','R3','Hedge Rush','staff_hero', () => { this.g.S.adRushT = this.g.C.ADS.rushTime; });
+      if (g.S.adRushT > 0 || waiting < C.rushMinWaiting) this.unchip('r3');
+      let pad = null;
+      for (const u of g.C.UNLOCKS) {
+        if (!g.padVisible(u) || !u.cost || Math.hypot(g.player.x-u.pad.x,g.player.y-u.pad.y)>34) continue;
+        const rem = u.cost - (g.S.padPaid[u.id] || 0);
+        if (rem>0 && g.S.coins<rem && rem<=u.cost*C.padShortMax) pad = u;
+      }
+      if (pad && !this.chips.r2) {
+        const target = pad;
+        this.offer('r2','R2','Finish ' + target.name,target.icon, () => {
+          const g = this.g;
+          if (g.has(target.id)) return;
+          g.S.padPaid[target.id] = target.cost; g.completeUnlock(target.id);
+        },0);
+        if (this.chips.r2) this.chips.r2.target = target.id;
+      } else if (!pad || this.chips.r2 && this.chips.r2.target !== pad.id) this.unchip('r2');
+    },
+    coinsWait() { return CST.Ads.canReward('R5') ? 0 : Infinity; },
+    popAdd() {
+      if (!HSGame.has('tiktok_missions')) return;
+      this.app.ui.popup({ title:'Launch Reward', hdr:'hdr_mega', items:[
+        {t:'step',n:1,text:'Tap Go below.'}, {t:'step',n:2,text:'Add the game to your home screen.'},
+        {t:'step',n:3,text:'Open Hedge Hotpot from the new icon.'},
+        {t:'step',n:4,text:'TikTok verifies completion and sends the reward.'},
+        {t:'cap',text:CST.HS.rewardText('tiktok_shortcut')},
+        {t:'btn',label:'Go',style:'green',fn:() => HSGame.tiktokMission.start('shortcut')}
+      ] });
+    },
+    popRevisit() {
+      if (!HSGame.has('tiktok_missions')) return;
+      this.app.ui.popup({ title:'Entry Reward', hdr:'hdr_mega', items:[
+        {t:'step',n:1,text:'Go to your TikTok profile.'}, {t:'step',n:2,text:'Open TikTok Minis.'},
+        {t:'step',n:3,text:'Open Hedge Hotpot from there.'},
+        {t:'step',n:4,text:'Come back; TikTok verifies and sends the reward.'},
+        {t:'cap',text:CST.HS.rewardText('tiktok_profile')},
+        {t:'btn',label:'Go',style:'green',fn:() => HSGame.tiktokMission.start('profile')}
+      ] });
+    },
+    popShare() {
+      if (!HSGame.has('share') || !HSGame.canShare()) return;
+      const available = HSGame.available('share');
+      this.app.ui.popup({ title:'Share', hdr:'hdr_share', items:[
+        {t:'img',art:'share_art'}, {t:'cap',text:available ? 'Share the game with friends. ' + CST.HS.rewardText('share') : 'Reward already received today.'},
+        {t:'btn',label:'Share',style:'green',fn:() => HSGame.share({title:'Hedge Hotpot',subtitle:'Run a cozy hedgehog hotpot restaurant.'})}
+      ] });
+    },
+    popCoins() {
+      if (!CST.Ads.canReward('R5')) return;
+      this.app.ui.popup({ title:'Free Coins', hdr:'hdr_mega', items:[
+        {t:'img',art:'launch_coins'}, {t:'cap',text:CST.HS.rewardText('free_coins')},
+        {t:'btn',label:CST.Ads.actionLabel('R5'),style:'green',fn:() => { this.closePop(); CST.Ads.reward('R5', () => {
+          const g=this.g; g.gain(g.rewardCoins(g.C.ADS.coinsMinutes),g.player.x,g.player.y-70,false);
+        }); }}
+      ] });
+    },
+    popRush() {
+      if (!CST.Ads.canReward('R6')) return;
+      this.app.ui.popup({ title:'Keep the rush going?', hdr:'hdr_mega', items:[
+        {t:'cap',text:CST.HS.rewardText('rush_extend')},
+        {t:'btn',label:CST.Ads.actionLabel('R6'),style:'green',fn:() => { this.closePop(); CST.Ads.reward('R6', () => this.g.continueRush(this.g.C.ADS.rushExtra)); }},
+        {t:'link',text:'No thanks',fn:() => this.closePop()}
+      ] });
+    }
   };
-  M.unchip = function (id) { const c = this.chips[id]; if (c) { clearTimeout(c.exp); delete this.chips[id]; } this.chipList = this.chipList.filter(x => x.id !== id); };
-
-  M.update = function () {
-    const g = this.g, S = g.S, A = CST.Ads, C = CST.CONFIG.ADS;
-    if (g.phase > this.phase) { this.phase = g.phase; A.tryInter('I3_phase'); }
-    const waiting = g.customers.filter(c => ['QUEUE', 'WAIT_FOR_SUSHI', 'WAIT_ORDER', 'EXTRA_WAIT'].includes(c.state)).length;
-    if (A.enabled && S.adRushT <= 0 && waiting >= C.rushMinWaiting && A.canReward('R3', C.rushEvery) && A.t > (C.rushAfter || 60)) {
-      if (!this.chips.r3) this.chip('r3', `Hedge Rush|${C.rushTime}s: staff faster, +${Math.round((C.rushPrice - 1) * 100)}% prices`, 'staff_hero', 0, () => A.reward('R3_rush', () => { S.adRushT = C.rushTime; this.app.ui.toast(`Hedge Rush! Staff +${Math.round((C.rushStaff - 1) * 100)}% faster, prices +${Math.round((C.rushPrice - 1) * 100)}% for ${C.rushTime}s`, 'staff_hero', true); }));
-    } else if (this.chips.r3 && (waiting < C.rushMinWaiting || S.adRushT > 0)) this.unchip('r3');
-    const P = g.player; let pad = null;
-    for (const u of g.C.UNLOCKS) { if (!g.padVisible(u) || !u.cost || Math.hypot(P.x - u.pad.x, P.y - u.pad.y) > 34) continue; const rem = u.cost - (S.padPaid[u.id] || 0); if (rem > 0 && S.coins < rem && rem <= u.cost * C.padShortMax) pad = { u, rem }; }
-    if (pad && A.enabled && A.canReward('R2')) {
-      if (!this.chips.r2 || this.chips.r2.id !== pad.u.id) { this.chip('r2', `Finish ${pad.u.name}|watch ad: build it now`, pad.u.icon, 0, () => A.reward('R2_pad', () => { const rem = pad.u.cost - (S.padPaid[pad.u.id] || 0); S.padPaid[pad.u.id] = pad.u.cost; g.addStat('earned', rem); g.completeUnlock(pad.u.id); })); this.chips.r2.id = pad.u.id; }
-    } else if (this.chips.r2) this.unchip('r2');
-  };
-
-  const coinsItem = n => ({ t: 'img', art: 'launch_coins', amount: '+' + fmt(n) });
-  const steps = (go, step2, n, claimable, note, onGo, onClaim, claimedLabel) => [
-    { t: 'step', n: 1, text: 'Tap the button below.' }, { t: 'btn', label: go, style: 'yellow', fn: onGo },
-    { t: 'step', n: 2, text: step2.text }, step2.item,
-    { t: 'step', n: 3, text: 'Claim rewards.' }, coinsItem(n), { t: 'note', text: note },
-    { t: 'btn', label: claimedLabel || 'Claim', style: claimable ? 'green' : 'off', fn: claimable ? onClaim : null }];
-
-  M.popAdd = function () {
-    const m = this.st(), C = CST.CONFIG.MINIS, n = this.amount(C.addMinutes), o = TT();
-    const show = ok => {
-      const done = !!m.addClaimed;
-      this.app.ui.popup({ title: 'Launch Reward', hdr: 'hdr_mega', items: steps(m.added ? 'Added ✓' : 'Add to Home Screen',
-        { text: 'Open Hedge Hotpot Conveyor from the icon on your home screen.', item: { t: 'img', art: 'launch_phone' } }, n, ok && !done,
-        done ? 'Thanks for adding Hedge Hotpot Conveyor!' : ok ? 'Thanks for adding Hedge Hotpot Conveyor!' : 'Open the game from your home screen to claim.',
-        () => { if (can(o, 'addShortcut')) o.addShortcut({ success: () => { m.added = true; this.g.save(); check(); }, fail: () => this.app.ui.toast('Could not add the shortcut', 'c_fx_heart') }); else { m.added = true; this.g.save(); show(true); } },
-        () => { m.addClaimed = true; this.closePop(); this.grant(n, C.addStars, 'Home screen reward'); try { o && o.reportMissionRewardGranted && o.reportMissionRewardGranted({ type: 'shortcut' }); } catch (e) { } },
-        done ? 'Claimed ✓' : 'Claim').concat([{ t: 'note', text: `+${C.addStars}★ bonus`, color: '#b8650f' }]) });
-    };
-    const check = () => { if (can(o, 'getShortcutMissionReward')) o.getShortcutMissionReward({ success: r => show(!!(r && r.canReceiveReward)), fail: () => show(!!m.added) }); else show(!!m.added); };
-    check();
-  };
-  M.popRevisit = function () {
-    const m = this.st(), n = this.amount(CST.CONFIG.MINIS.revisitMinutes), done = m.revisitDay === today(), o = TT();
-    const show = ok => this.app.ui.popup({ title: 'Entry Reward', hdr: 'hdr_mega', items: steps('Go', { text: 'Come back to Hedge Hotpot Conveyor from your TikTok profile.', item: { t: 'side' } }, n, ok && !done,
-      done ? 'Come back tomorrow for another gift.' : 'Reopen the game from your profile to claim.',
-      () => { if (can(o, 'startEntranceMission')) o.startEntranceMission({ complete: () => { } }); else { m.visited = today(); this.g.save(); show(true); } },
-      () => { m.revisitDay = today(); this.closePop(); this.grant(n, 0, 'Revisit gift'); try { o && o.reportMissionRewardGranted && o.reportMissionRewardGranted({ type: 'revisit' }); } catch (e) { } }) });
-    const q = can(o, 'getEntranceMissionReward') ? 'getEntranceMissionReward' : can(o, 'getRevisitMissionReward') ? 'getRevisitMissionReward' : null;
-    if (q) o[q]({ success: r => show(!!(r && r.canReceiveReward)), fail: () => show(false) }); else show(m.visited === today());
-  };
-  M.popShare = function () {
-    const m = this.st(), n = this.amount(CST.CONFIG.MINIS.shareMinutes), done = m.shareDay === today();
-    this.app.ui.popup({ title: 'Share Rewards', hdr: 'hdr_share', items: [{ t: 'img', art: 'share_art', amount: '+' + fmt(n), right: true },
-      { t: 'cap', text: done ? 'Shared today – come back tomorrow!' : 'Send Hedge Hotpot Conveyor to a friend to get free coins!' },
-      { t: 'btn', label: '⇪  Share', style: done ? 'off' : 'green', fn: done ? null : () => this.doShare(false, n) }] });
-  };
-  M.popCoins = function (refresh) {
-    const A = CST.Ads, C = CST.CONFIG.ADS, n = this.amount(C.coinsMinutes);
-    const w = Math.ceil(this.coinsWait()), ok = A.enabled && w <= 0 && A.canReward('R5', 0);
-    const spec = { title: 'Free Coins', hdr: 'hdr_mega', items: [coinsItem(n), { t: 'cap', text: ok ? 'Watch a short video for free coins!' : !A.enabled ? 'Ads are not available right now.' : 'Next free coins in' },
-      { t: 'btn', label: ok ? '▶  Watch' : `⏱ ${Math.floor(w / 60)}:${String(w % 60).padStart(2, '0')}`, style: ok ? 'green' : 'off', fn: ok ? () => { this.closePop(); A.reward('R5_coins', () => this.grant(n, 0, 'Free coins')); } : null }] };
-    if (refresh) this.app.ui.pop = spec; else this.app.ui.popup(spec);
-    if (!ok && A.enabled) { clearTimeout(this._cw); this._cw = setTimeout(() => { if (this.app.ui.pop === spec) this.popCoins(true); }, 1000); }   // live countdown
-  };
-  M.popRush = function () {
-    const C = CST.CONFIG.ADS;
-    this.app.ui.popup({ title: 'So Close!', hdr: 'hdr_mega', items: [{ t: 'cap', text: `The Grand Opening rush ended early. Watch a video to keep it going for ${C.rushExtra} more seconds.` },
-      { t: 'btn', label: `▶  +${C.rushExtra}s Rush`, style: 'green', fn: () => { this.closePop(); CST.Ads.reward('R6_rush', () => this.g.continueRush(C.rushExtra)); } },
-      { t: 'link', text: 'No thanks', fn: () => this.closePop() }] });
-  };
-})(typeof window !== 'undefined' ? window : globalThis);
+})(typeof GameGlobal !== 'undefined' ? GameGlobal : globalThis);

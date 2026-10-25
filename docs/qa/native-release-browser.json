@@ -1,0 +1,112 @@
+{
+  "checks": [
+    {
+      "name": "Empty credentials: restaurant runs, production ads disabled",
+      "pass": true
+    },
+    {
+      "name": "Closed early: no ad from direct call, timer or idle",
+      "pass": true
+    },
+    {
+      "name": "Closed early: gameplay and sound paused",
+      "pass": true
+    },
+    {
+      "name": "Closed early: reward delivered exactly as expected",
+      "pass": true,
+      "detail": {
+        "before": 30,
+        "after": 30
+      }
+    },
+    {
+      "name": "No fill: no ad from direct call, timer or idle",
+      "pass": true
+    },
+    {
+      "name": "No fill: gameplay and sound paused",
+      "pass": true
+    },
+    {
+      "name": "No fill: reward delivered exactly as expected",
+      "pass": true,
+      "detail": {
+        "before": 30,
+        "after": 30
+      }
+    },
+    {
+      "name": "Watched to the end: no ad from direct call, timer or idle",
+      "pass": true
+    },
+    {
+      "name": "Watched to the end: gameplay and sound paused",
+      "pass": true
+    },
+    {
+      "name": "Watched to the end: reward delivered exactly as expected",
+      "pass": true,
+      "detail": {
+        "before": 30,
+        "after": 80
+      }
+    },
+    {
+      "name": "Rewarded 30s dashboard cooldown",
+      "pass": true
+    },
+    {
+      "name": "Reward persisted synchronously before callback returns",
+      "pass": true
+    },
+    {
+      "name": "Launch Reward verified, delivered once, button hidden",
+      "pass": true
+    },
+    {
+      "name": "Launch Reward cannot be farmed",
+      "pass": true
+    },
+    {
+      "name": "Entry Reward verified once and button hidden",
+      "pass": true
+    },
+    {
+      "name": "Share pays only once per day",
+      "pass": true
+    },
+    {
+      "name": "Interstitial hidden for first three tasks",
+      "pass": true,
+      "detail": {
+        "early": false,
+        "eligible": true
+      }
+    },
+    {
+      "name": "Interstitial starts on Continue tap; 90s dashboard cooldown",
+      "pass": true
+    },
+    {
+      "name": "Android capability gates hide TikTok missions",
+      "pass": true
+    },
+    {
+      "name": "No native browser runtime errors",
+      "pass": true,
+      "detail": []
+    },
+    {
+      "name": "HS preview makes no requests to live services",
+      "pass": true,
+      "detail": []
+    }
+  ],
+  "errors": [],
+  "externalRequests": [],
+  "blockedBrowserSecurityOrigins": [
+    "http://me.kis.v2.scr.kaspersky-labs.com"
+  ],
+  "pass": true
+}

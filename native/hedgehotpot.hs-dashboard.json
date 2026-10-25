@@ -1,0 +1,150 @@
+{
+  "iaa_config": {
+    "placements": [
+      {
+        "label": "double_task_bonus",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_R1>",
+            "config": {
+              "cooldown": 30
+            }
+          }
+        ]
+      },
+      {
+        "label": "finish_building",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_R2>",
+            "config": {
+              "cooldown": 30
+            }
+          }
+        ]
+      },
+      {
+        "label": "hedge_rush",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_R3>",
+            "config": {
+              "cooldown": 30
+            }
+          }
+        ]
+      },
+      {
+        "label": "vip_tip",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_R4>",
+            "config": {
+              "cooldown": 30
+            }
+          }
+        ]
+      },
+      {
+        "label": "free_coins",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_R5>",
+            "config": {
+              "cooldown": 30
+            }
+          }
+        ]
+      },
+      {
+        "label": "rush_extend",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_R6>",
+            "config": {
+              "cooldown": 30
+            }
+          }
+        ]
+      },
+      {
+        "label": "phase_continue",
+        "ads": [
+          {
+            "id": "<AD_UNIT_ID_inter>",
+            "config": {
+              "cooldown": 90
+            }
+          }
+        ]
+      }
+    ],
+    "rewards": {
+      "double_task_bonus": {
+        "double_task": 1
+      },
+      "finish_building": {
+        "finish_pad": 1
+      },
+      "hedge_rush": {
+        "hedge_rush": 1
+      },
+      "vip_tip": {
+        "vip_tip": 1
+      },
+      "free_coins": {
+        "free_coins": 1
+      },
+      "rush_extend": {
+        "rush_extend": 1
+      },
+      "share": {
+        "coins": 50,
+        "$limit": "daily"
+      },
+      "tiktok_shortcut": {
+        "coins": 80,
+        "stars": 1,
+        "$limit": "once"
+      },
+      "tiktok_profile": {
+        "coins": 60,
+        "$limit": "once"
+      }
+    },
+    "items": {
+      "double_task": {
+        "category": "ad_effect",
+        "name": "Double task reward"
+      },
+      "finish_pad": {
+        "category": "ad_effect",
+        "name": "Finish building now"
+      },
+      "hedge_rush": {
+        "category": "ad_effect",
+        "name": "Hedge Rush"
+      },
+      "vip_tip": {
+        "category": "ad_effect",
+        "name": "VIP bonus tip"
+      },
+      "rush_extend": {
+        "category": "ad_effect",
+        "name": "Extra Grand Opening time"
+      },
+      "coins": {
+        "category": "currency",
+        "name": "Coins"
+      },
+      "stars": {
+        "category": "currency",
+        "name": "Stars"
+      },
+      "free_coins": {
+        "category": "ad_effect",
+        "name": "Income-based coin reward"
+      }
+    }
+  }
+}

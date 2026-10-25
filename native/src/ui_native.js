@@ -52,7 +52,7 @@
     update(dt) {
       this.now += dt; this.t += dt; if (this.flashT > 0) this.flashT -= dt;
       for (const t of this.toasts) t.t += dt; this.toasts = this.toasts.filter(t => t.t < 2.3);
-      if (this.t >= 0.12) { this.t = 0; if (CST.Minis && CST.Minis.g) CST.Minis.update(); }
+      if (this.t >= 0.12) { this.t = 0; if (CST.Minis && CST.Minis.g) CST.Minis.update(.12); }
       if (!this.hintGone && (this.g.S.time > 25 || this.g.stat('ingPicked') > 0)) this.hintGone = true;
       this.draw();
     }
@@ -71,13 +71,17 @@
     icon(key, cx, cy, box) {
       const c = this.ctx;
       if (ART.img[key]) { const im = ART.img[key], s = Math.min(box / im.width, box / im.height); c.drawImage(im, cx - im.width * s / 2, cy - im.height * s / 2, im.width * s, im.height * s); return; }
-      let atlas = 'props', fk = key; if (key && key.startsWith('staff_')) [atlas, fk] = STAFF_ICON[key] || STAFF_ICON.staff_hero;
+      let atlas = 'props', fk = key;
+      if (key && key.startsWith('staff_')) {
+        const roles = { staff_chef:'waiter', staff_waiter:'server', staff_server:'server', staff_cashier:'cashier', staff_cleaner:'cleaner', staff_manager:'manager', staff_hero:'chef' };
+        const frame = CST.Anim.frame(roles[key] || 'chef','idle','front',0); atlas=frame.atlas; fk=frame.key;
+      }
       const f = A().frame(atlas, fk), im = A().img[atlas]; if (!f || !im) return;
       const s = Math.min(box / f[2], box / f[3]); c.drawImage(im, f[0], f[1], f[2], f[3], cx - f[2] * s / 2, cy - f[3] * s / 2, f[2] * s, f[3] * s);
     }
     coin(cx, cy, r) { const c = this.ctx, g = c.createRadialGradient(cx - r * 0.3, cy - r * 0.3, 1, cx, cy, r); g.addColorStop(0, '#fff3a0'); g.addColorStop(0.55, '#ffc928'); g.addColorStop(1, '#d88a0a'); c.fillStyle = g; c.beginPath(); c.arc(cx, cy, r, 0, 7); c.fill(); c.lineWidth = 2; c.strokeStyle = '#a8690e'; c.stroke(); }
     star(cx, cy, r) { const c = this.ctx; c.beginPath(); for (let i = 0; i < 10; i++) { const a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * 0.45 : r; c.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr); } c.closePath(); c.fillStyle = '#ffc93c'; c.fill(); c.lineWidth = 1.6; c.strokeStyle = BROWN; c.lineJoin = 'round'; c.stroke(); }
-    hit(x, y, w, h, fn) { this.hits.push({ x, y, w, h, fn }); }
+    hit(x, y, w, h, fn) { this.hits.push({ x, y, w, h, fn: fn ? () => CST.HS.tap(fn) : null }); }
     button(x, y, w, h, label, style, fn, size = 18) {
       const c = this.ctx, st = { green: ['#8ee36a', '#3fae3c', '#2a6e27', '#fff'], yellow: ['#ffe46a', '#ffbb1c', '#b4740c', DARK], pink: ['#ff9ab0', '#ff5f7e', '#d23f62', '#fff'], off: ['#e2d6c6', '#d2c3b0', '#a99a86', '#fff8ee'], toggleOff: ['#e2d6c6', '#d2c3b0', '#a99a86', '#fff8ee'], blue: ['#7cc4ff', '#3d8fe0', '#2a5f9a', '#fff'] }[style] || ['#8ee36a', '#3fae3c', '#2a6e27', '#fff'];
       c.fillStyle = st[2]; this.rr(x, y + 4, w, h, Math.min(16, h / 2.4)); c.fill();
@@ -98,7 +102,7 @@
       this.coin(32, top + ph / 2, 13); this.text(fmt(st.coins), 50, top + ph / 2 + 1, this.fit(fmt(st.coins), 20, pw1 - 80), DARK);
       const px = 10 + pw1 - 30; this.card(px, top + 9, 22, 22, 6, '#4fc46a', '#2e8a44'); this.text('+', px + 11, top + 20, 18, '#fff', 'bold', 'center');
       if (CST.Minis && CST.Minis.g && CST.Ads.enabled && CST.Minis.coinsWait() <= 0) { c.fillStyle = '#ffcf3d'; c.beginPath(); c.arc(px + 22, top + 8, 7, 0, 7); c.fill(); c.strokeStyle = BROWN; c.lineWidth = 1.5; c.stroke(); this.text('▶', px + 22.5, top + 8.5, 7, BROWN, 'bold', 'center'); }
-      this.hit(px - 8, top - 4, 40, ph + 8, () => CST.Minis.popCoins());
+      if (CST.Ads.canReward('R5')) this.hit(px - 8, top - 4, 40, ph + 8, () => CST.Minis.popCoins());
       this.card(x2, top, pw2, ph, 15, CREAM, BROWN, 3); this.star(x2 + 21, top + ph / 2, 12); this.text(String(st.stars), x2 + 40, top + ph / 2 + 1, 20, DARK);
       const pw3 = W - 10 - x3; this.card(x3, top, pw3, ph, 15, CREAM, BROWN, 3);
       const tot = CST.CONFIG.TASKS.length, tw = pw3 - 40; this.card(x3 + 6, top + 8, tw, 24, 10, '#ead6bd', BROWN);
@@ -181,8 +185,9 @@
 
     // ---------------------------------------------------------------- Minis side buttons + reward chips
     sideButtons(y) {
-      const M = CST.Minis; if (!M || !M.g) return; const m = M.st(), d = M.today();
-      [['add', 'ico_add', 'Add to', 'screen', !m.addClaimed, () => M.popAdd()], ['rev', 'ico_revisit', 'Revisit', 'gift', m.revisitDay !== d, () => M.popRevisit()], ['share', 'ico_share', 'Share', 'gift', m.shareDay !== d, () => M.popShare()]].forEach(([id, ic, a, b, badge, fn], i) => {
+      const M = CST.Minis; if (!M || !M.g) return;
+      M.entries().forEach((entry, i) => {
+        const { icon: ic, a, b, badge, tap: fn } = entry;
         const x = 10, yy = y + i * 62, w = 50, h = 54, c = this.ctx;
         this.card(x, yy, w, h, 13, CREAM, BROWN, 2); this.icon(ic, x + w / 2, yy + 17, 26);
         this.text(a, x + w / 2, yy + 36, 8.5, DARK, 'bold', 'center'); this.text(b, x + w / 2, yy + 46, 8.5, DARK, 'bold', 'center');
@@ -300,7 +305,7 @@
     // ---------------------------------------------------------------- popups
     // spec: { title, hdr, items: [{t:'step'|'btn'|'img'|'cap'|'note'|'side'|'link', ...}] }
     popup(spec) { this.pop = spec; CST.Audio.play('pop'); }
-    closePopup() { this.pop = null; }
+    closePopup() { if (CST.HS.pauseReasons.has('account')) return; this.pop = null; }
     itemH(it, iw) {
       if (it.t === 'step') return 34; if (it.t === 'btn') return 58; if (it.t === 'link') return 30; if (it.t === 'side') return 84;
       if (it.t === 'img') { const im = ART.img[it.art]; return im ? iw * im.height / im.width + 6 : 100; }
@@ -342,7 +347,7 @@
     }
     confirmReset() {
       this.close();
-      this.popup({ title: 'Start over?', hdr: 'hdr_mega', items: [{ t: 'cap', text: 'This erases your restaurant, coins and tasks on this device.' },
+      this.popup({ title: 'Start over?', hdr: 'hdr_mega', items: [{ t: 'cap', text: 'This resets your restaurant, coins and tasks. If cloud save is connected, the new save will sync to your account.' },
         { t: 'btn', label: 'Reset', style: 'pink', fn: () => { this.closePopup(); this.app.resetGame(); } }, { t: 'link', text: 'Cancel', fn: () => this.closePopup() }] });
     }
     complete() {

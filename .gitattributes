@@ -1,0 +1,3 @@
+# The SDK distribution must remain byte-for-byte identical to the supplied kit.
+native/hs-sdk/*.js -text
+vendor/hs-sdk-1.1.3/** -text

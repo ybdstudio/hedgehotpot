@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"><base href="../meow-hotpot/"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<!doctype html><html><head><meta charset="utf-8"><base href="../hedgehotpot/"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 <link rel="icon" href="data:,"><title>Hedge Hotpot – native runtime emulator</title>
 <style>html,body{margin:0;height:100%;background:#111;overflow:hidden;touch-action:none}#cv{position:fixed;inset:0;width:100vw;height:100vh;display:block}</style></head>
 <body><canvas id="cv"></canvas>
@@ -32,19 +32,19 @@
   }
 })();
 </script>
-<script src="hs-tiktok-sdk.min.js"></script>
+<script src="hs-sdk.min.js"></script>
 <script>
 /* CommonJS require for the two HS files (the native runtime has a real require). */
-window.require = p => ({ './hs-tiktok-sdk.min.js': window.HSTikTokSDK, './hs-game.js': window.HSGame })[p];
+window.require = p => ({ './hs-sdk.min.js': window.HSTikTokSDK, './hs-game.js': window.HSGame })[p];
 </script>
 <script src="hs-game.js"></script>
 <script>
-/* ?hsfake=1: a fake HS backend over tt.request serving ../meow-hotpot.hs-dashboard.json as the live dashboard
+/* ?hsfake=1: a fake HS backend over tt.request serving ../hedgehotpot.hs-dashboard.json as the live dashboard
    (unit types: Inter1 interstitial, the rest rewarded). Without it the SDK tries the real server and ads stay off. */
 (function () {
   const q = new URLSearchParams(location.search); if (q.get('hsfake') !== '1') return;
-  const x = new XMLHttpRequest(); x.open('GET', '../meow-hotpot.hs-dashboard.json', false); x.send();
-  const iaa = JSON.parse(x.responseText).iaa_config, inter = new Set(['Inter1']);
+  const x = new XMLHttpRequest(); x.open('GET', '../hedgehotpot.hs-dashboard.json', false); x.send();
+  const iaa = JSON.parse(x.responseText).iaa_config, inter = new Set(['phase_continue']);
   const aps = [].concat(...iaa.placements.map(p => p.ads.map(a => ({ id: a.id, type: inter.has(p.label) ? 'interstitial' : 'rewarded', status: 'active' }))));
   const route = (ep, data) => {
     if (ep === '/api/login') return { success: true, session_token: 'emu', open_id: 'emu_open', last_updated_timestamp: 1, ack_required: true, refund_mode: 'auto', aps, iaa_config: JSON.stringify(iaa) };

@@ -1,13 +1,17 @@
 {
-  "gameId": "YOUR_TIKTOK_APP_ID",
-  "sdkKey": "YOUR_HS_SDK_KEY",
+  "gameId": "",
+  "sdkKey": "",
+  "pacing": {
+    "interstitialEnabled": true,
+    "interstitialAfterTasks": 3
+  },
   "places": {
-    "R1": "Double Task Bonus",
-    "R2": "Buying Pad",
-    "R3": "Meow Rush",
-    "R4": "VIP tip",
-    "R5": "Coin Purchase",
-    "R6": "Grand Opening",
-    "inter": "Inter1"
+    "R1": "double_task_bonus",
+    "R2": "finish_building",
+    "R3": "hedge_rush",
+    "R4": "vip_tip",
+    "R5": "free_coins",
+    "R6": "rush_extend",
+    "inter": "phase_continue"
   }
 }
