@@ -1,0 +1,13 @@
+{
+  "gameId": "YOUR_TIKTOK_APP_ID",
+  "sdkKey": "YOUR_HS_SDK_KEY",
+  "places": {
+    "R1": "Double Task Bonus",
+    "R2": "Buying Pad",
+    "R3": "Meow Rush",
+    "R4": "VIP tip",
+    "R5": "Coin Purchase",
+    "R6": "Grand Opening",
+    "inter": "Inter1"
+  }
+}

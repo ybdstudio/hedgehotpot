@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "character_roles": 10,
+  "atlases": 11,
+  "unique_character_keys": 1440,
+  "obsolete_character_furniture_composites_removed": 41,
+  "additional_paw_branded_props_replaced": 25,
+  "browser_regression": "14/14 passed; game completed in 39:24 simulated play time; zero page errors",
+  "preview_checks": "All logical actions/directions, bounds, keyboard, five panels, staged areas/table states, standalone offline, native emulator passed",
+  "native_build": {
+    "main_package_mb": 1.2,
+    "total_mb": 11.08
+  },
+  "standalone_html": "dist/hedge-hotpot-preview.html",
+  "sha256": "85040020c76b6b2d9d5af84bb5b720f01895eaec4747cbbb02654d0a35980338",
+  "limits": [
+    "Missing NPC directional walk drawings use direction-correct idle frames with procedural step motion.",
+    "Kitchen/cleaning motion uses procedural animation; no claim of newly drawn specialized action sheets.",
+    "Seated reference views are left/right views rather than full eight-direction seated artwork.",
+    "Station state frames share new mascot art; progress rings and output items continue to show processing state.",
+    "Native emulator tested; physical TikTok device and production ad credentials not tested."
+  ],
+  "git": "Local changes only. No commit or push."
+}

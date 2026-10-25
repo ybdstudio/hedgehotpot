@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#f7c9cf">
+<title>Hedge Hotpot Conveyor</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="game" aria-label="Hedge Hotpot: drag to move, or use WASD and arrow keys"></canvas>
+
+  <!-- top HUD (Cat Pizza style: big pills) -->
+  <div id="hud-top">
+    <div class="hud-row">
+      <div class="pill coins"><span class="coin-ico"></span><b id="coins">0</b><span class="plus">+</span></div>
+      <div class="pill stars"><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2.6l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17l-5.7 3.1 1.2-6.4L2.8 9.3l6.4-.8z"/></svg><b id="stars">0</b></div>
+      <div class="pill prog"><div class="prog-track"><i id="phaseBar"></i><b id="phasePct">0/0</b></div><svg class="pin" viewBox="0 0 24 24"><path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.6 7.5 13.5 7.5 13.5s7.5-7.9 7.5-13.5A7.5 7.5 0 0 0 12 1.5z"/><circle cx="12" cy="9" r="3" fill="#fff"/></svg></div>
+    </div>
+    <div class="hud-row sub">
+      <span id="phaseName" class="phase-chip">Phase 1</span><small id="rating" class="rating"></small>
+      <div class="pill boost hidden" id="boost"><span>x1.5</span><b id="boostT">0s</b></div>
+    </div>
+    <div id="rush" class="rush hidden"></div>
+  </div>
+
+  <div id="minis">
+    <button id="mbAdd" class="mb"><img data-art="ico_add" alt=""><span>Add<br>to screen</span><em>!</em></button>
+    <button id="mbRevisit" class="mb"><img data-art="ico_revisit" alt=""><span>Revisit<br>gift</span><em>!</em></button>
+    <button id="mbShare" class="mb"><img data-art="ico_share" alt=""><span>Share<br>gift</span><em>!</em></button>
+  </div>
+  <div id="adSide"><div class="pill adrush hidden" id="adRush"><span>Hedge Rush</span><b id="adRushT">0s</b></div><div id="adChips"></div></div>
+  <div id="adDebug" class="hidden"></div>
+
+  <div id="offarrow" class="offarrow hidden"></div>
+  <div id="toasts"></div>
+
+  <!-- joystick -->
+  <div id="joy" class="joy hidden"><div class="knob"></div></div>
+
+  <!-- bottom: hint + task card + nav -->
+  <div id="hud-bottom">
+    <div id="hint" class="hint-line">Drag anywhere to move · WASD on desktop</div>
+    <div id="bonus" class="bonus-chip"></div>
+    <div id="task" class="task-card">
+      <span class="task-ico"><svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="18" rx="2.5" fill="#fff"/><rect x="8.5" y="2" width="7" height="4" rx="1.5" fill="#fff" stroke="#c83a3a" stroke-width="1.4"/><path d="M8.5 13l2.5 2.5 4.8-5" fill="none" stroke="#3aa856" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <div class="task-main">
+        <div id="taskText" class="task-text">…</div>
+        <div class="task-bot"><div class="bar"><i id="taskBar"></i></div><span id="taskCount"></span></div>
+      </div>
+      <span id="taskReward" class="reward"></span>
+    </div>
+    <nav id="nav">
+      <button data-panel="shop" class="nb shop"><svg viewBox="0 0 32 32"><rect x="6" y="14" width="20" height="14" rx="1.5" fill="#fff" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><rect x="13" y="19" width="6.5" height="9" rx="1" fill="#4a8fe0" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><rect x="8.5" y="18" width="3" height="3.5" rx=".6" fill="#bfe3ff" stroke="#4a2614" stroke-width="1.1"/><rect x="21" y="18" width="3" height="3.5" rx=".6" fill="#bfe3ff" stroke="#4a2614" stroke-width="1.1"/><path d="M5.5 5.5h21l2.5 7h-26z" fill="#fff" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.7 5.5l-1.2 7M16 5.5v7M22.3 5.5l1.2 7" stroke="#e8463e" stroke-width="3.2"/><path d="M5.5 5.5h21l2.5 7h-26z" fill="none" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 12.5h26v1.6a2.6 2.6 0 0 1-5.2 0 2.6 2.6 0 0 1-5.2 0 2.6 2.6 0 0 1-5.2 0 2.6 2.6 0 0 1-5.2 0 2.6 2.6 0 0 1-5.2 0z" fill="#e8463e" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Shop</span><em class="dot hidden" id="shopDot"></em></button>
+      <button data-panel="upgrade" class="nb up"><svg viewBox="0 0 32 32"><path d="M16 3L4 16h7v12h10V16h7z" fill="#fff" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/></svg><span>Upgrade</span><em class="dot hidden" id="upDot"></em></button>
+      <button data-panel="tasks" class="nb task"><svg viewBox="0 0 32 32"><rect x="7" y="5" width="18" height="24" rx="3" fill="#fff" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><rect x="11.5" y="3" width="9" height="5" rx="2" fill="#fff" stroke="#c83a3a" stroke-width="1.6"/><path d="M11 17l3.5 3.5 6.5-7" fill="none" stroke="#3aa856" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Task</span></button>
+      <button data-panel="map" class="nb map"><svg viewBox="0 0 32 32"><path d="M4 8l7-3 10 3 7-3v19l-7 3-10-3-7 3z" fill="#fff" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><path d="M11 5v19M21 8v19" stroke="#4a8fe0" stroke-width="1.6"/><path d="M6 20c4-2 7 1 10-1s6-5 10-4" fill="none" stroke="#5cc36a" stroke-width="2"/><path d="M22 6a3.4 3.4 0 0 0-3.4 3.4c0 2.5 3.4 6 3.4 6s3.4-3.5 3.4-6A3.4 3.4 0 0 0 22 6z" fill="#e8463e" stroke="#4a2614" stroke-width="1.2"/></svg><span>Map</span></button>
+      <button data-panel="settings" class="nb set"><svg viewBox="0 0 32 32"><path d="M16.00 6.40 L18.46 3.64 L20.82 4.36 L21.33 8.02 L22.79 9.21 L26.48 9.00 L27.64 11.18 L25.42 14.13 L25.60 16.00 L28.36 18.46 L27.64 20.82 L23.98 21.33 L22.79 22.79 L23.00 26.48 L20.82 27.64 L17.87 25.42 L16.00 25.60 L13.54 28.36 L11.18 27.64 L10.67 23.98 L9.21 22.79 L5.52 23.00 L4.36 20.82 L6.58 17.87 L6.40 16.00 L3.64 13.54 L4.36 11.18 L8.02 10.67 L9.21 9.21 L9.00 5.52 L11.18 4.36 L14.13 6.58Z" fill="#fff" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="16" r="5.2" fill="#f4a33a" stroke="#4a2614" stroke-width="1.6" stroke-linejoin="round"/><circle cx="16" cy="16" r="2" fill="#fff"/></svg><span>Settings</span></button>
+    </nav>
+  </div>
+
+  <!-- panels -->
+  <div id="sheet" class="sheet hidden">
+    <div class="sheet-card">
+      <header><h2 id="sheetTitle"></h2><button class="close" id="sheetClose" aria-label="Close">✕</button></header>
+      <div id="sheetBody" class="sheet-body"></div>
+    </div>
+  </div>
+
+  <!-- start / loading -->
+  <div id="splash" class="splash">
+    <img id="splashArt" class="splash-art" alt="Hedge Hotpot — a cozy restaurant run by hedgehogs">
+    <div class="splash-foot">
+      <div class="lbar"><i id="loadBar"></i></div>
+      <p id="loadTxt" class="ltxt">Loading...</p>
+      <div id="splashBtns" class="hidden">
+        <button id="btnPlay" class="big">Play</button>
+        <button id="btnNew" class="link hidden">Start new restaurant</button>
+      </div>
+    </div>
+    <img id="splashCat" alt="" class="hidden">
+  </div>
+
+  <div id="modal" class="modal hidden"><div class="modal-card" id="modalCard"></div></div>
+  <div id="minisPop" class="mpop hidden"></div>
+  <div id="adMock" class="admock hidden"><div class="ad-frame"><span class="ad-tag">TEST</span><b class="ad-kind">Ad</b><p class="ad-count"></p><p class="ad-sub">TikTok ad will play here</p><button class="ad-close hidden">Close ✕</button><button class="ad-skip">✕</button></div></div>
+</div>
+
+<script src="js/uiart.js"></script>
+<script src="js/manifest.js"></script>
+<script src="js/config.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/conveyor.js"></script>
+<script src="js/game.js"></script>
+<script src="js/bot.js"></script>
+<script src="js/assets.js"></script>
+<script src="js/render.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/input.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/ads.js"></script>
+<script src="js/minis.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

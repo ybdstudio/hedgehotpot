@@ -1,0 +1,1804 @@
+[
+ {
+  "seed": 1000,
+  "earnedByMin": [
+   0,
+   22,
+   100,
+   159,
+   249,
+   401,
+   514,
+   657,
+   833,
+   1095,
+   1324,
+   1808,
+   2255,
+   2515,
+   2897,
+   3227,
+   3748,
+   4189,
+   4496,
+   5050,
+   6216,
+   6488,
+   6867,
+   7638,
+   8103,
+   8729,
+   9572,
+   10414,
+   10933,
+   11860,
+   12703,
+   13733,
+   14348,
+   14813,
+   15318,
+   15902,
+   16463,
+   17148,
+   17972
+  ],
+  "done": true,
+  "time": 2313.0999999996493,
+  "taskAt": [
+   {
+    "i": 0,
+    "t": 1.1000000000000003,
+    "name": "Pick up 3 salmon from the crate"
+   },
+   {
+    "i": 1,
+    "t": 9.199999999999996,
+    "name": "Prepare 3 salmon sushi"
+   },
+   {
+    "i": 2,
+    "t": 16.350000000000097,
+    "name": "Place 3 plates on the conveyor"
+   },
+   {
+    "i": 3,
+    "t": 82.54999999999745,
+    "name": "Serve 3 customers (take payment at the register)"
+   },
+   {
+    "i": 4,
+    "t": 158.30000000000175,
+    "name": "Earn 100 coins"
+   },
+   {
+    "i": 5,
+    "t": 158.30000000000175,
+    "name": "Unlock the second seat"
+   },
+   {
+    "i": 6,
+    "t": 163.55000000000294,
+    "name": "Unlock the Tuna Station"
+   },
+   {
+    "i": 7,
+    "t": 213.9500000000144,
+    "name": "Prepare 5 tuna sushi"
+   },
+   {
+    "i": 8,
+    "t": 246.0500000000217,
+    "name": "Upgrade conveyor speed"
+   },
+   {
+    "i": 9,
+    "t": 253.40000000002337,
+    "name": "Unlock the Rice Station"
+   },
+   {
+    "i": 10,
+    "t": 293.1500000000324,
+    "name": "Unlock Fish Storage"
+   },
+   {
+    "i": 11,
+    "t": 396.2000000000558,
+    "name": "Hire Waiter Cat (carries sushi to the belt)"
+   },
+   {
+    "i": 12,
+    "t": 449.3000000000679,
+    "name": "Produce 10 sushi automatically"
+   },
+   {
+    "i": 13,
+    "t": 464.20000000007127,
+    "name": "Hire Cashier Cat"
+   },
+   {
+    "i": 14,
+    "t": 575.6500000000242,
+    "name": "Extend the conveyor (+3 stools)"
+   },
+   {
+    "i": 15,
+    "t": 642.5499999999633,
+    "name": "Unlock Maki sushi"
+   },
+   {
+    "i": 16,
+    "t": 693.2499999999172,
+    "name": "Hire Cleaner Cat"
+   },
+   {
+    "i": 17,
+    "t": 707.1499999999046,
+    "name": "Clean 5 dirty plates"
+   },
+   {
+    "i": 18,
+    "t": 808.7999999998121,
+    "name": "Unlock the VIP Lounge"
+   },
+   {
+    "i": 19,
+    "t": 909.3999999997206,
+    "name": "Unlock the Premium Station"
+   },
+   {
+    "i": 20,
+    "t": 939.749999999693,
+    "name": "Serve VIP Customer 1 (bring Premium Ikura)"
+   },
+   {
+    "i": 21,
+    "t": 971.3999999996643,
+    "name": "Open Dining Room 2 (more tables)"
+   },
+   {
+    "i": 22,
+    "t": 1117.4499999995314,
+    "name": "Unlock the Drink Station"
+   },
+   {
+    "i": 23,
+    "t": 1191.3499999994642,
+    "name": "Serve 5 drinks"
+   },
+   {
+    "i": 24,
+    "t": 1244.349999999416,
+    "name": "Unlock the Dessert Station"
+   },
+   {
+    "i": 25,
+    "t": 1338.3999999993305,
+    "name": "Hire Server Cat"
+   },
+   {
+    "i": 26,
+    "t": 1424.699999999252,
+    "name": "Unlock VIP Sofa 2"
+   },
+   {
+    "i": 27,
+    "t": 1476.249999999205,
+    "name": "Serve VIP Customer 2"
+   },
+   {
+    "i": 28,
+    "t": 1563.8999999991254,
+    "name": "Open the Tatami Hall"
+   },
+   {
+    "i": 29,
+    "t": 1623.749999999071,
+    "name": "Upgrade conveyor capacity (Lv 2)"
+   },
+   {
+    "i": 30,
+    "t": 1763.249999998944,
+    "name": "Hire Manager Cat"
+   },
+   {
+    "i": 31,
+    "t": 1929.8499999987926,
+    "name": "Add the Grand Decoration"
+   },
+   {
+    "i": 32,
+    "t": 2235.449999999367,
+    "name": "Final conveyor upgrade (max speed)"
+   },
+   {
+    "i": 33,
+    "t": 2241.79999999939,
+    "name": "Start the Grand Opening"
+   },
+   {
+    "i": 34,
+    "t": 2313.0999999996493,
+    "name": "Grand Opening: serve 15 customers in the rush"
+   }
+  ],
+  "unlockAt": {
+   "seat_a2": 85.44999999999729,
+   "st_tuna": 163.55000000000294,
+   "rice": 253.40000000002337,
+   "storage": 293.1500000000324,
+   "chef": 396.2000000000558,
+   "queue": 401.9000000000571,
+   "seat_a3": 434.3000000000645,
+   "cashier": 464.20000000007127,
+   "belt_b": 575.6500000000242,
+   "st_maki": 642.5499999999633,
+   "cleaner": 693.2499999999172,
+   "vip_lounge": 808.7999999998121,
+   "st_premium": 909.3999999997206,
+   "seats_a67": 971.3999999996643,
+   "st_drink": 1117.4499999995314,
+   "seats_a45": 1168.1499999994853,
+   "st_dessert": 1244.349999999416,
+   "waiter": 1338.3999999993305,
+   "vip_sofa2": 1424.699999999252,
+   "hall": 1563.8999999991254,
+   "manager": 1763.249999998944,
+   "final_decor": 1929.8499999987926,
+   "grand_open": 2241.79999999939
+  },
+  "phaseAt": {
+   "1": 0,
+   "2": 158.30000000000175,
+   "3": 246.0500000000217,
+   "4": 464.20000000007127,
+   "5": 707.1499999999046,
+   "6": 971.3999999996643,
+   "7": 1476.249999999205,
+   "8": 1623.749999999071
+  },
+  "stats": {
+   "playTime": 2313.0999999996493,
+   "ingPicked": 79,
+   "tasksDone": 35,
+   "made_salmon": 722,
+   "made": 1184,
+   "beltLoaded": 877,
+   "beltLoadedAll": 877,
+   "platesTaken": 863,
+   "cleaned": 971,
+   "paid": 351,
+   "happy": 271,
+   "washed": 969,
+   "earned": 18572,
+   "made_tuna": 308,
+   "autoFed": 1102,
+   "chefLoaded": 798,
+   "made_maki": 38,
+   "made_premium": 53,
+   "tableServed": 98,
+   "angry": 58,
+   "vip1Served": 2,
+   "vipServed": 8,
+   "made_drink": 34,
+   "drinksServed": 26,
+   "made_dessert": 29,
+   "waiterServed": 113,
+   "dessertsServed": 16,
+   "vip2Served": 6,
+   "boosts": 13,
+   "rushServed": 15
+  },
+  "coins": 1405,
+  "stars": 86,
+  "purchases": 37,
+  "maxGap": 231.80000000064115,
+  "avgGap": 62.25810810809769,
+  "dupErr": 0,
+  "maxPlates": 14
+ },
+ {
+  "seed": 8919,
+  "earnedByMin": [
+   0,
+   15,
+   97,
+   150,
+   244,
+   350,
+   505,
+   644,
+   750,
+   894,
+   1046,
+   1193,
+   1498,
+   1903,
+   2111,
+   2507,
+   2708,
+   3058,
+   3347,
+   3990,
+   4513,
+   4984,
+   5704,
+   6161,
+   6788,
+   7462,
+   7977,
+   8587,
+   9149,
+   10032,
+   10548,
+   11018,
+   11544,
+   12023,
+   12502,
+   13183,
+   13712,
+   14374,
+   14821,
+   15290,
+   15749,
+   16376,
+   17095,
+   17478,
+   18076,
+   18648
+  ],
+  "done": true,
+  "time": 2712.8000000011034,
+  "taskAt": [
+   {
+    "i": 0,
+    "t": 1.1000000000000003,
+    "name": "Pick up 3 salmon from the crate"
+   },
+   {
+    "i": 1,
+    "t": 9.199999999999996,
+    "name": "Prepare 3 salmon sushi"
+   },
+   {
+    "i": 2,
+    "t": 16.350000000000097,
+    "name": "Place 3 plates on the conveyor"
+   },
+   {
+    "i": 3,
+    "t": 85.64999999999728,
+    "name": "Serve 3 customers (take payment at the register)"
+   },
+   {
+    "i": 4,
+    "t": 147.84999999999937,
+    "name": "Earn 100 coins"
+   },
+   {
+    "i": 5,
+    "t": 147.84999999999937,
+    "name": "Unlock the second seat"
+   },
+   {
+    "i": 6,
+    "t": 153.10000000000056,
+    "name": "Unlock the Tuna Station"
+   },
+   {
+    "i": 7,
+    "t": 208.00000000001305,
+    "name": "Prepare 5 tuna sushi"
+   },
+   {
+    "i": 8,
+    "t": 226.60000000001727,
+    "name": "Upgrade conveyor speed"
+   },
+   {
+    "i": 9,
+    "t": 265.70000000002614,
+    "name": "Unlock the Rice Station"
+   },
+   {
+    "i": 10,
+    "t": 318.10000000003805,
+    "name": "Unlock Fish Storage"
+   },
+   {
+    "i": 11,
+    "t": 378.1000000000517,
+    "name": "Hire Waiter Cat (carries sushi to the belt)"
+   },
+   {
+    "i": 12,
+    "t": 437.9000000000653,
+    "name": "Produce 10 sushi automatically"
+   },
+   {
+    "i": 13,
+    "t": 452.4500000000686,
+    "name": "Hire Cashier Cat"
+   },
+   {
+    "i": 14,
+    "t": 657.5999999999497,
+    "name": "Extend the conveyor (+3 stools)"
+   },
+   {
+    "i": 15,
+    "t": 727.2499999998863,
+    "name": "Unlock Maki sushi"
+   },
+   {
+    "i": 16,
+    "t": 790.8999999998284,
+    "name": "Hire Cleaner Cat"
+   },
+   {
+    "i": 17,
+    "t": 810.4499999998106,
+    "name": "Clean 5 dirty plates"
+   },
+   {
+    "i": 18,
+    "t": 939.749999999693,
+    "name": "Unlock the VIP Lounge"
+   },
+   {
+    "i": 19,
+    "t": 1064.9499999995792,
+    "name": "Unlock the Premium Station"
+   },
+   {
+    "i": 20,
+    "t": 1095.3499999995515,
+    "name": "Serve VIP Customer 1 (bring Premium Ikura)"
+   },
+   {
+    "i": 21,
+    "t": 1109.7999999995384,
+    "name": "Open Dining Room 2 (more tables)"
+   },
+   {
+    "i": 22,
+    "t": 1233.0999999994262,
+    "name": "Unlock the Drink Station"
+   },
+   {
+    "i": 23,
+    "t": 1451.099999999228,
+    "name": "Serve 5 drinks"
+   },
+   {
+    "i": 24,
+    "t": 1491.9999999991908,
+    "name": "Unlock the Dessert Station"
+   },
+   {
+    "i": 25,
+    "t": 1579.4499999991112,
+    "name": "Hire Server Cat"
+   },
+   {
+    "i": 26,
+    "t": 1654.7499999990428,
+    "name": "Unlock VIP Sofa 2"
+   },
+   {
+    "i": 27,
+    "t": 1699.1499999990024,
+    "name": "Serve VIP Customer 2"
+   },
+   {
+    "i": 28,
+    "t": 1764.6999999989428,
+    "name": "Open the Tatami Hall"
+   },
+   {
+    "i": 29,
+    "t": 1833.3999999988803,
+    "name": "Upgrade conveyor capacity (Lv 2)"
+   },
+   {
+    "i": 30,
+    "t": 2058.8999999987245,
+    "name": "Hire Manager Cat"
+   },
+   {
+    "i": 31,
+    "t": 2298.5999999995965,
+    "name": "Add the Grand Decoration"
+   },
+   {
+    "i": 32,
+    "t": 2622.550000000775,
+    "name": "Final conveyor upgrade (max speed)"
+   },
+   {
+    "i": 33,
+    "t": 2629.100000000799,
+    "name": "Start the Grand Opening"
+   },
+   {
+    "i": 34,
+    "t": 2712.8000000011034,
+    "name": "Grand Opening: serve 15 customers in the rush"
+   }
+  ],
+  "unlockAt": {
+   "seat_a2": 88.29999999999713,
+   "st_tuna": 153.10000000000056,
+   "rice": 265.70000000002614,
+   "storage": 318.10000000003805,
+   "chef": 378.1000000000517,
+   "queue": 404.9000000000578,
+   "cashier": 452.4500000000686,
+   "belt_b": 657.5999999999497,
+   "st_maki": 727.2499999998863,
+   "cleaner": 790.8999999998284,
+   "seat_a3": 799.9499999998202,
+   "vip_lounge": 939.749999999693,
+   "st_premium": 1064.9499999995792,
+   "seats_a67": 1109.7999999995384,
+   "st_drink": 1233.0999999994262,
+   "seats_a45": 1283.4499999993805,
+   "st_dessert": 1491.9999999991908,
+   "waiter": 1579.4499999991112,
+   "vip_sofa2": 1654.7499999990428,
+   "hall": 1764.6999999989428,
+   "manager": 2058.8999999987245,
+   "final_decor": 2298.5999999995965,
+   "grand_open": 2629.100000000799
+  },
+  "phaseAt": {
+   "1": 0,
+   "2": 147.84999999999937,
+   "3": 226.60000000001727,
+   "4": 452.4500000000686,
+   "5": 810.4499999998106,
+   "6": 1109.7999999995384,
+   "7": 1699.1499999990024,
+   "8": 1833.3999999988803
+  },
+  "stats": {
+   "playTime": 2712.8000000011034,
+   "ingPicked": 93,
+   "tasksDone": 35,
+   "made_salmon": 860,
+   "made": 1313,
+   "beltLoaded": 953,
+   "beltLoadedAll": 953,
+   "platesTaken": 939,
+   "cleaned": 1084,
+   "washed": 1083,
+   "paid": 392,
+   "happy": 312,
+   "earned": 19096,
+   "made_tuna": 279,
+   "autoFed": 1215,
+   "chefLoaded": 878,
+   "made_maki": 71,
+   "angry": 43,
+   "made_premium": 32,
+   "tableServed": 121,
+   "vip1Served": 2,
+   "vipServed": 3,
+   "made_drink": 40,
+   "drinksServed": 27,
+   "made_dessert": 31,
+   "dessertsServed": 20,
+   "waiterServed": 134,
+   "vip2Served": 1,
+   "boosts": 15,
+   "rushServed": 15
+  },
+  "coins": 1212,
+  "stars": 78,
+  "purchases": 38,
+  "maxGap": 252.5000000009186,
+  "avgGap": 71.23289473687058,
+  "dupErr": 0,
+  "maxPlates": 14
+ },
+ {
+  "seed": 16838,
+  "earnedByMin": [
+   0,
+   15,
+   74,
+   155,
+   223,
+   327,
+   459,
+   649,
+   787,
+   996,
+   1117,
+   1380,
+   1749,
+   2073,
+   2385,
+   2622,
+   2900,
+   3252,
+   3860,
+   4175,
+   4609,
+   5492,
+   6187,
+   6583,
+   7310,
+   7983,
+   8831,
+   9248,
+   9680,
+   9926,
+   10577,
+   11193,
+   11711,
+   12276,
+   12961,
+   13430,
+   14055,
+   14757,
+   15192,
+   15779,
+   16297,
+   16824,
+   17438
+  ],
+  "done": true,
+  "time": 2569.6000000005824,
+  "taskAt": [
+   {
+    "i": 0,
+    "t": 1.1000000000000003,
+    "name": "Pick up 3 salmon from the crate"
+   },
+   {
+    "i": 1,
+    "t": 9.199999999999996,
+    "name": "Prepare 3 salmon sushi"
+   },
+   {
+    "i": 2,
+    "t": 16.350000000000097,
+    "name": "Place 3 plates on the conveyor"
+   },
+   {
+    "i": 3,
+    "t": 76.4999999999978,
+    "name": "Serve 3 customers (take payment at the register)"
+   },
+   {
+    "i": 4,
+    "t": 177.8500000000062,
+    "name": "Earn 100 coins"
+   },
+   {
+    "i": 5,
+    "t": 177.8500000000062,
+    "name": "Unlock the second seat"
+   },
+   {
+    "i": 6,
+    "t": 183.10000000000738,
+    "name": "Unlock the Tuna Station"
+   },
+   {
+    "i": 7,
+    "t": 219.55000000001567,
+    "name": "Prepare 5 tuna sushi"
+   },
+   {
+    "i": 8,
+    "t": 219.75000000001572,
+    "name": "Upgrade conveyor speed"
+   },
+   {
+    "i": 9,
+    "t": 259.55000000002474,
+    "name": "Unlock the Rice Station"
+   },
+   {
+    "i": 10,
+    "t": 291.9500000000321,
+    "name": "Unlock Fish Storage"
+   },
+   {
+    "i": 11,
+    "t": 382.5500000000527,
+    "name": "Hire Waiter Cat (carries sushi to the belt)"
+   },
+   {
+    "i": 12,
+    "t": 423.7500000000621,
+    "name": "Produce 10 sushi automatically"
+   },
+   {
+    "i": 13,
+    "t": 452.8000000000687,
+    "name": "Hire Cashier Cat"
+   },
+   {
+    "i": 14,
+    "t": 608.1499999999946,
+    "name": "Extend the conveyor (+3 stools)"
+   },
+   {
+    "i": 15,
+    "t": 690.3999999999198,
+    "name": "Unlock Maki sushi"
+   },
+   {
+    "i": 16,
+    "t": 742.7999999998722,
+    "name": "Hire Cleaner Cat"
+   },
+   {
+    "i": 17,
+    "t": 757.5999999998587,
+    "name": "Clean 5 dirty plates"
+   },
+   {
+    "i": 18,
+    "t": 893.1499999997354,
+    "name": "Unlock the VIP Lounge"
+   },
+   {
+    "i": 19,
+    "t": 998.6999999996394,
+    "name": "Unlock the Premium Station"
+   },
+   {
+    "i": 20,
+    "t": 1024.6999999996158,
+    "name": "Serve VIP Customer 1 (bring Premium Ikura)"
+   },
+   {
+    "i": 21,
+    "t": 1078.1499999995672,
+    "name": "Open Dining Room 2 (more tables)"
+   },
+   {
+    "i": 22,
+    "t": 1197.099999999459,
+    "name": "Unlock the Drink Station"
+   },
+   {
+    "i": 23,
+    "t": 1297.7999999993674,
+    "name": "Serve 5 drinks"
+   },
+   {
+    "i": 24,
+    "t": 1337.0999999993317,
+    "name": "Unlock the Dessert Station"
+   },
+   {
+    "i": 25,
+    "t": 1410.299999999265,
+    "name": "Hire Server Cat"
+   },
+   {
+    "i": 26,
+    "t": 1498.8499999991845,
+    "name": "Unlock VIP Sofa 2"
+   },
+   {
+    "i": 27,
+    "t": 1544.9999999991426,
+    "name": "Serve VIP Customer 2"
+   },
+   {
+    "i": 28,
+    "t": 1683.2499999990168,
+    "name": "Open the Tatami Hall"
+   },
+   {
+    "i": 29,
+    "t": 1757.6999999989491,
+    "name": "Upgrade conveyor capacity (Lv 2)"
+   },
+   {
+    "i": 30,
+    "t": 1972.7999999987535,
+    "name": "Hire Manager Cat"
+   },
+   {
+    "i": 31,
+    "t": 2189.6499999992,
+    "name": "Add the Grand Decoration"
+   },
+   {
+    "i": 32,
+    "t": 2486.750000000281,
+    "name": "Final conveyor upgrade (max speed)"
+   },
+   {
+    "i": 33,
+    "t": 2497.2500000003192,
+    "name": "Start the Grand Opening"
+   },
+   {
+    "i": 34,
+    "t": 2569.6000000005824,
+    "name": "Grand Opening: serve 15 customers in the rush"
+   }
+  ],
+  "unlockAt": {
+   "seat_a2": 79.39999999999763,
+   "st_tuna": 183.10000000000738,
+   "rice": 259.55000000002474,
+   "storage": 291.9500000000321,
+   "chef": 382.5500000000527,
+   "queue": 399.40000000005654,
+   "cashier": 452.8000000000687,
+   "belt_b": 608.1499999999946,
+   "st_maki": 690.3999999999198,
+   "cleaner": 742.7999999998722,
+   "vip_lounge": 893.1499999997354,
+   "st_premium": 998.6999999996394,
+   "seat_a3": 1014.0999999996254,
+   "seats_a67": 1078.1499999995672,
+   "st_drink": 1197.099999999459,
+   "seats_a45": 1259.3499999994024,
+   "st_dessert": 1337.0999999993317,
+   "waiter": 1410.299999999265,
+   "vip_sofa2": 1498.8499999991845,
+   "hall": 1683.2499999990168,
+   "manager": 1972.7999999987535,
+   "final_decor": 2189.6499999992,
+   "grand_open": 2497.2500000003192
+  },
+  "phaseAt": {
+   "1": 0,
+   "2": 177.8500000000062,
+   "3": 219.75000000001572,
+   "4": 452.8000000000687,
+   "5": 757.5999999998587,
+   "6": 1078.1499999995672,
+   "7": 1544.9999999991426,
+   "8": 1757.6999999989491
+  },
+  "stats": {
+   "playTime": 2569.6000000005824,
+   "ingPicked": 88,
+   "tasksDone": 35,
+   "made_salmon": 772,
+   "made": 1234,
+   "beltLoaded": 911,
+   "beltLoadedAll": 911,
+   "platesTaken": 897,
+   "cleaned": 1028,
+   "washed": 1024,
+   "paid": 375,
+   "happy": 304,
+   "earned": 18480,
+   "made_tuna": 292,
+   "autoFed": 1141,
+   "chefLoaded": 841,
+   "made_maki": 73,
+   "made_premium": 28,
+   "tableServed": 113,
+   "vip1Served": 2,
+   "vipServed": 3,
+   "angry": 28,
+   "made_drink": 41,
+   "drinksServed": 32,
+   "made_dessert": 28,
+   "waiterServed": 136,
+   "dessertsServed": 19,
+   "vip2Served": 1,
+   "boosts": 14,
+   "rushServed": 15
+  },
+  "coins": 1389,
+  "stars": 68,
+  "purchases": 37,
+  "maxGap": 241.05000000087693,
+  "avgGap": 68.95675675677072,
+  "dupErr": 0,
+  "maxPlates": 14
+ },
+ {
+  "seed": 24757,
+  "earnedByMin": [
+   0,
+   37,
+   89,
+   142,
+   266,
+   363,
+   471,
+   624,
+   788,
+   1054,
+   1222,
+   1612,
+   1907,
+   2242,
+   2506,
+   2793,
+   3025,
+   3355,
+   3906,
+   4185,
+   4589,
+   5161,
+   5531,
+   5931,
+   6544,
+   7075,
+   7887,
+   8536,
+   9172,
+   9934,
+   10398,
+   10881,
+   11893,
+   12986,
+   14431,
+   15457,
+   16436,
+   17432,
+   18005,
+   18441,
+   19630,
+   20876
+  ],
+  "done": true,
+  "time": 2464.800000000201,
+  "taskAt": [
+   {
+    "i": 0,
+    "t": 1.1000000000000003,
+    "name": "Pick up 3 salmon from the crate"
+   },
+   {
+    "i": 1,
+    "t": 9.199999999999996,
+    "name": "Prepare 3 salmon sushi"
+   },
+   {
+    "i": 2,
+    "t": 16.350000000000097,
+    "name": "Place 3 plates on the conveyor"
+   },
+   {
+    "i": 3,
+    "t": 75.84999999999783,
+    "name": "Serve 3 customers (take payment at the register)"
+   },
+   {
+    "i": 4,
+    "t": 143.89999999999847,
+    "name": "Earn 100 coins"
+   },
+   {
+    "i": 5,
+    "t": 143.89999999999847,
+    "name": "Unlock the second seat"
+   },
+   {
+    "i": 6,
+    "t": 150.1499999999999,
+    "name": "Unlock the Tuna Station"
+   },
+   {
+    "i": 7,
+    "t": 176.40000000000586,
+    "name": "Prepare 5 tuna sushi"
+   },
+   {
+    "i": 8,
+    "t": 186.3000000000081,
+    "name": "Upgrade conveyor speed"
+   },
+   {
+    "i": 9,
+    "t": 217.70000000001525,
+    "name": "Unlock the Rice Station"
+   },
+   {
+    "i": 10,
+    "t": 270.5000000000272,
+    "name": "Unlock Fish Storage"
+   },
+   {
+    "i": 11,
+    "t": 374.950000000051,
+    "name": "Hire Waiter Cat (carries sushi to the belt)"
+   },
+   {
+    "i": 12,
+    "t": 440.1000000000658,
+    "name": "Produce 10 sushi automatically"
+   },
+   {
+    "i": 13,
+    "t": 456.10000000006943,
+    "name": "Hire Cashier Cat"
+   },
+   {
+    "i": 14,
+    "t": 592.1000000000092,
+    "name": "Extend the conveyor (+3 stools)"
+   },
+   {
+    "i": 15,
+    "t": 662.8999999999448,
+    "name": "Unlock Maki sushi"
+   },
+   {
+    "i": 16,
+    "t": 730.1499999998837,
+    "name": "Hire Cleaner Cat"
+   },
+   {
+    "i": 17,
+    "t": 743.0999999998719,
+    "name": "Clean 5 dirty plates"
+   },
+   {
+    "i": 18,
+    "t": 891.1499999997372,
+    "name": "Unlock the VIP Lounge"
+   },
+   {
+    "i": 19,
+    "t": 1009.5499999996296,
+    "name": "Unlock the Premium Station"
+   },
+   {
+    "i": 20,
+    "t": 1040.5499999996014,
+    "name": "Serve VIP Customer 1 (bring Premium Ikura)"
+   },
+   {
+    "i": 21,
+    "t": 1075.7499999995694,
+    "name": "Open Dining Room 2 (more tables)"
+   },
+   {
+    "i": 22,
+    "t": 1197.6999999994584,
+    "name": "Unlock the Drink Station"
+   },
+   {
+    "i": 23,
+    "t": 1663.8499999990345,
+    "name": "Serve 5 drinks"
+   },
+   {
+    "i": 24,
+    "t": 1677.0499999990225,
+    "name": "Unlock the Dessert Station"
+   },
+   {
+    "i": 25,
+    "t": 1733.3999999989712,
+    "name": "Hire Server Cat"
+   },
+   {
+    "i": 26,
+    "t": 1822.9499999988898,
+    "name": "Unlock VIP Sofa 2"
+   },
+   {
+    "i": 27,
+    "t": 1861.7999999988544,
+    "name": "Serve VIP Customer 2"
+   },
+   {
+    "i": 28,
+    "t": 1934.6499999987882,
+    "name": "Open the Tatami Hall"
+   },
+   {
+    "i": 29,
+    "t": 1948.7499999987754,
+    "name": "Upgrade conveyor capacity (Lv 2)"
+   },
+   {
+    "i": 30,
+    "t": 2055.499999998712,
+    "name": "Hire Manager Cat"
+   },
+   {
+    "i": 31,
+    "t": 2198.949999999234,
+    "name": "Add the Grand Decoration"
+   },
+   {
+    "i": 32,
+    "t": 2396.899999999954,
+    "name": "Final conveyor upgrade (max speed)"
+   },
+   {
+    "i": 33,
+    "t": 2403.7999999999793,
+    "name": "Start the Grand Opening"
+   },
+   {
+    "i": 34,
+    "t": 2464.800000000201,
+    "name": "Grand Opening: serve 15 customers in the rush"
+   }
+  ],
+  "unlockAt": {
+   "seat_a2": 80.49999999999757,
+   "st_tuna": 150.1499999999999,
+   "rice": 217.70000000001525,
+   "storage": 270.5000000000272,
+   "chef": 374.950000000051,
+   "seat_a3": 419.70000000006115,
+   "cashier": 456.10000000006943,
+   "belt_b": 592.1000000000092,
+   "st_maki": 662.8999999999448,
+   "cleaner": 730.1499999998837,
+   "queue": 738.8999999998757,
+   "vip_lounge": 891.1499999997372,
+   "st_premium": 1009.5499999996296,
+   "seats_a67": 1075.7499999995694,
+   "st_drink": 1197.6999999994584,
+   "seats_a45": 1238.6999999994212,
+   "st_dessert": 1677.0499999990225,
+   "waiter": 1733.3999999989712,
+   "vip_sofa2": 1822.9499999988898,
+   "hall": 1934.6499999987882,
+   "manager": 2055.499999998712,
+   "final_decor": 2198.949999999234,
+   "grand_open": 2403.7999999999793
+  },
+  "phaseAt": {
+   "1": 0,
+   "2": 143.89999999999847,
+   "3": 186.3000000000081,
+   "4": 456.10000000006943,
+   "5": 743.0999999998719,
+   "6": 1075.7499999995694,
+   "7": 1861.7999999988544,
+   "8": 1948.7499999987754
+  },
+  "stats": {
+   "playTime": 2464.800000000201,
+   "ingPicked": 87,
+   "tasksDone": 35,
+   "made_salmon": 842,
+   "made": 1411,
+   "beltLoaded": 928,
+   "beltLoadedAll": 928,
+   "platesTaken": 915,
+   "cleaned": 1044,
+   "washed": 1044,
+   "paid": 393,
+   "happy": 305,
+   "earned": 21006,
+   "made_tuna": 362,
+   "autoFed": 1321,
+   "chefLoaded": 848,
+   "made_maki": 60,
+   "made_premium": 79,
+   "tableServed": 120,
+   "vip1Served": 8,
+   "vipServed": 15,
+   "angry": 67,
+   "made_drink": 34,
+   "drinksServed": 24,
+   "made_dessert": 34,
+   "dessertsServed": 16,
+   "waiterServed": 107,
+   "vip2Served": 7,
+   "boosts": 9,
+   "rushServed": 15
+  },
+  "coins": 1751,
+  "stars": 98,
+  "purchases": 39,
+  "maxGap": 184.20000000067012,
+  "avgGap": 62.815384615388375,
+  "dupErr": 0,
+  "maxPlates": 14
+ },
+ {
+  "seed": 32676,
+  "earnedByMin": [
+   0,
+   30,
+   74,
+   147,
+   222,
+   313,
+   432,
+   511,
+   666,
+   822,
+   996,
+   1147,
+   1314,
+   1691,
+   1986,
+   2292,
+   2532,
+   2844,
+   3099,
+   3331,
+   3903,
+   4328,
+   4689,
+   5128,
+   5994,
+   6349,
+   6842,
+   7429,
+   7916,
+   8910,
+   9810,
+   10328,
+   10754,
+   11201,
+   11714,
+   12321,
+   12857,
+   13517,
+   13933,
+   14458,
+   15011,
+   15596,
+   16167,
+   16788,
+   17756
+  ],
+  "done": true,
+  "time": 2661.1500000009155,
+  "taskAt": [
+   {
+    "i": 0,
+    "t": 1.1000000000000003,
+    "name": "Pick up 3 salmon from the crate"
+   },
+   {
+    "i": 1,
+    "t": 9.199999999999996,
+    "name": "Prepare 3 salmon sushi"
+   },
+   {
+    "i": 2,
+    "t": 16.350000000000097,
+    "name": "Place 3 plates on the conveyor"
+   },
+   {
+    "i": 3,
+    "t": 76.09999999999782,
+    "name": "Serve 3 customers (take payment at the register)"
+   },
+   {
+    "i": 4,
+    "t": 150.1999999999999,
+    "name": "Earn 100 coins"
+   },
+   {
+    "i": 5,
+    "t": 150.1999999999999,
+    "name": "Unlock the second seat"
+   },
+   {
+    "i": 6,
+    "t": 155.4500000000011,
+    "name": "Unlock the Tuna Station"
+   },
+   {
+    "i": 7,
+    "t": 204.3000000000122,
+    "name": "Prepare 5 tuna sushi"
+   },
+   {
+    "i": 8,
+    "t": 222.05000000001624,
+    "name": "Upgrade conveyor speed"
+   },
+   {
+    "i": 9,
+    "t": 249.80000000002255,
+    "name": "Unlock the Rice Station"
+   },
+   {
+    "i": 10,
+    "t": 277.10000000002873,
+    "name": "Unlock Fish Storage"
+   },
+   {
+    "i": 11,
+    "t": 451.6500000000684,
+    "name": "Hire Waiter Cat (carries sushi to the belt)"
+   },
+   {
+    "i": 12,
+    "t": 465.7000000000716,
+    "name": "Produce 10 sushi automatically"
+   },
+   {
+    "i": 13,
+    "t": 483.00000000007554,
+    "name": "Hire Cashier Cat"
+   },
+   {
+    "i": 14,
+    "t": 677.6999999999314,
+    "name": "Extend the conveyor (+3 stools)"
+   },
+   {
+    "i": 15,
+    "t": 763.6499999998532,
+    "name": "Unlock Maki sushi"
+   },
+   {
+    "i": 16,
+    "t": 841.4499999997824,
+    "name": "Hire Cleaner Cat"
+   },
+   {
+    "i": 17,
+    "t": 856.5499999997687,
+    "name": "Clean 5 dirty plates"
+   },
+   {
+    "i": 18,
+    "t": 984.7499999996521,
+    "name": "Unlock the VIP Lounge"
+   },
+   {
+    "i": 19,
+    "t": 1127.0999999995227,
+    "name": "Unlock the Premium Station"
+   },
+   {
+    "i": 20,
+    "t": 1174.8999999994792,
+    "name": "Serve VIP Customer 1 (bring Premium Ikura)"
+   },
+   {
+    "i": 21,
+    "t": 1221.8499999994365,
+    "name": "Open Dining Room 2 (more tables)"
+   },
+   {
+    "i": 22,
+    "t": 1276.249999999387,
+    "name": "Unlock the Drink Station"
+   },
+   {
+    "i": 23,
+    "t": 1424.8499999992518,
+    "name": "Serve 5 drinks"
+   },
+   {
+    "i": 24,
+    "t": 1439.7999999992383,
+    "name": "Unlock the Dessert Station"
+   },
+   {
+    "i": 25,
+    "t": 1547.74999999914,
+    "name": "Hire Server Cat"
+   },
+   {
+    "i": 26,
+    "t": 1637.0999999990588,
+    "name": "Unlock VIP Sofa 2"
+   },
+   {
+    "i": 27,
+    "t": 1680.949999999019,
+    "name": "Serve VIP Customer 2"
+   },
+   {
+    "i": 28,
+    "t": 1769.2499999989386,
+    "name": "Open the Tatami Hall"
+   },
+   {
+    "i": 29,
+    "t": 1801.1999999989096,
+    "name": "Upgrade conveyor capacity (Lv 2)"
+   },
+   {
+    "i": 30,
+    "t": 2047.049999998686,
+    "name": "Hire Manager Cat"
+   },
+   {
+    "i": 31,
+    "t": 2291.549999999571,
+    "name": "Add the Grand Decoration"
+   },
+   {
+    "i": 32,
+    "t": 2579.8000000006195,
+    "name": "Final conveyor upgrade (max speed)"
+   },
+   {
+    "i": 33,
+    "t": 2586.9000000006454,
+    "name": "Start the Grand Opening"
+   },
+   {
+    "i": 34,
+    "t": 2661.1500000009155,
+    "name": "Grand Opening: serve 15 customers in the rush"
+   }
+  ],
+  "unlockAt": {
+   "seat_a2": 78.74999999999767,
+   "st_tuna": 155.4500000000011,
+   "rice": 249.80000000002255,
+   "storage": 277.10000000002873,
+   "chef": 451.6500000000684,
+   "queue": 459.8500000000703,
+   "cashier": 483.00000000007554,
+   "belt_b": 677.6999999999314,
+   "st_maki": 763.6499999998532,
+   "cleaner": 841.4499999997824,
+   "seat_a3": 850.8499999997739,
+   "vip_lounge": 984.7499999996521,
+   "st_premium": 1127.0999999995227,
+   "seats_a67": 1221.8499999994365,
+   "st_drink": 1276.249999999387,
+   "seats_a45": 1370.6499999993011,
+   "st_dessert": 1439.7999999992383,
+   "waiter": 1547.74999999914,
+   "vip_sofa2": 1637.0999999990588,
+   "hall": 1769.2499999989386,
+   "manager": 2047.049999998686,
+   "final_decor": 2291.549999999571,
+   "grand_open": 2586.9000000006454
+  },
+  "phaseAt": {
+   "1": 0,
+   "2": 150.1999999999999,
+   "3": 222.05000000001624,
+   "4": 483.00000000007554,
+   "5": 856.5499999997687,
+   "6": 1221.8499999994365,
+   "7": 1680.949999999019,
+   "8": 1801.1999999989096
+  },
+  "stats": {
+   "playTime": 2661.1500000009155,
+   "ingPicked": 90,
+   "tasksDone": 35,
+   "made_salmon": 814,
+   "made": 1254,
+   "beltLoaded": 930,
+   "beltLoadedAll": 930,
+   "platesTaken": 916,
+   "cleaned": 1047,
+   "washed": 1043,
+   "paid": 386,
+   "happy": 310,
+   "earned": 18380,
+   "made_tuna": 290,
+   "autoFed": 1165,
+   "chefLoaded": 856,
+   "made_maki": 58,
+   "angry": 24,
+   "made_premium": 23,
+   "tableServed": 109,
+   "vip1Served": 2,
+   "vipServed": 4,
+   "made_drink": 39,
+   "drinksServed": 29,
+   "made_dessert": 30,
+   "waiterServed": 133,
+   "dessertsServed": 22,
+   "vip2Served": 2,
+   "boosts": 14,
+   "rushServed": 15
+  },
+  "coins": 1337,
+  "stars": 71,
+  "purchases": 37,
+  "maxGap": 245.89999999977636,
+  "avgGap": 71.55000000002339,
+  "dupErr": 0,
+  "maxPlates": 14
+ },
+ {
+  "seed": 40595,
+  "earnedByMin": [
+   0,
+   29,
+   116,
+   173,
+   260,
+   403,
+   559,
+   719,
+   853,
+   1026,
+   1263,
+   1608,
+   2001,
+   2297,
+   2465,
+   2747,
+   3117,
+   3685,
+   4120,
+   4550,
+   5097,
+   5428,
+   5998,
+   6780,
+   7105,
+   7890,
+   8630,
+   9646,
+   10677,
+   11451,
+   12396,
+   12905,
+   13960,
+   14669,
+   15146,
+   15606,
+   16252,
+   16808,
+   17782
+  ],
+  "done": true,
+  "time": 2318.74999999967,
+  "taskAt": [
+   {
+    "i": 0,
+    "t": 1.1000000000000003,
+    "name": "Pick up 3 salmon from the crate"
+   },
+   {
+    "i": 1,
+    "t": 9.199999999999996,
+    "name": "Prepare 3 salmon sushi"
+   },
+   {
+    "i": 2,
+    "t": 16.350000000000097,
+    "name": "Place 3 plates on the conveyor"
+   },
+   {
+    "i": 3,
+    "t": 87.19999999999719,
+    "name": "Serve 3 customers (take payment at the register)"
+   },
+   {
+    "i": 4,
+    "t": 147.9499999999994,
+    "name": "Earn 100 coins"
+   },
+   {
+    "i": 5,
+    "t": 147.9499999999994,
+    "name": "Unlock the second seat"
+   },
+   {
+    "i": 6,
+    "t": 153.20000000000059,
+    "name": "Unlock the Tuna Station"
+   },
+   {
+    "i": 7,
+    "t": 189.95000000000894,
+    "name": "Prepare 5 tuna sushi"
+   },
+   {
+    "i": 8,
+    "t": 195.20000000001014,
+    "name": "Upgrade conveyor speed"
+   },
+   {
+    "i": 9,
+    "t": 222.65000000001638,
+    "name": "Unlock the Rice Station"
+   },
+   {
+    "i": 10,
+    "t": 244.95000000002145,
+    "name": "Unlock Fish Storage"
+   },
+   {
+    "i": 11,
+    "t": 340.05000000004304,
+    "name": "Hire Waiter Cat (carries sushi to the belt)"
+   },
+   {
+    "i": 12,
+    "t": 398.60000000005635,
+    "name": "Produce 10 sushi automatically"
+   },
+   {
+    "i": 13,
+    "t": 420.3000000000613,
+    "name": "Hire Cashier Cat"
+   },
+   {
+    "i": 14,
+    "t": 571.500000000028,
+    "name": "Extend the conveyor (+3 stools)"
+   },
+   {
+    "i": 15,
+    "t": 649.6499999999569,
+    "name": "Unlock Maki sushi"
+   },
+   {
+    "i": 16,
+    "t": 702.3999999999089,
+    "name": "Hire Cleaner Cat"
+   },
+   {
+    "i": 17,
+    "t": 716.8999999998957,
+    "name": "Clean 5 dirty plates"
+   },
+   {
+    "i": 18,
+    "t": 869.6999999997568,
+    "name": "Unlock the VIP Lounge"
+   },
+   {
+    "i": 19,
+    "t": 976.9999999996592,
+    "name": "Unlock the Premium Station"
+   },
+   {
+    "i": 20,
+    "t": 1010.8499999996284,
+    "name": "Serve VIP Customer 1 (bring Premium Ikura)"
+   },
+   {
+    "i": 21,
+    "t": 1034.6499999996067,
+    "name": "Open Dining Room 2 (more tables)"
+   },
+   {
+    "i": 22,
+    "t": 1132.5999999995176,
+    "name": "Unlock the Drink Station"
+   },
+   {
+    "i": 23,
+    "t": 1279.6999999993839,
+    "name": "Serve 5 drinks"
+   },
+   {
+    "i": 24,
+    "t": 1363.099999999308,
+    "name": "Unlock the Dessert Station"
+   },
+   {
+    "i": 25,
+    "t": 1434.3499999992432,
+    "name": "Hire Server Cat"
+   },
+   {
+    "i": 26,
+    "t": 1507.5999999991766,
+    "name": "Unlock VIP Sofa 2"
+   },
+   {
+    "i": 27,
+    "t": 1555.7999999991328,
+    "name": "Serve VIP Customer 2"
+   },
+   {
+    "i": 28,
+    "t": 1612.0999999990815,
+    "name": "Open the Tatami Hall"
+   },
+   {
+    "i": 29,
+    "t": 1641.8999999990544,
+    "name": "Upgrade conveyor capacity (Lv 2)"
+   },
+   {
+    "i": 30,
+    "t": 1784.3499999989249,
+    "name": "Hire Manager Cat"
+   },
+   {
+    "i": 31,
+    "t": 1955.3999999987693,
+    "name": "Add the Grand Decoration"
+   },
+   {
+    "i": 32,
+    "t": 2239.7999999993826,
+    "name": "Final conveyor upgrade (max speed)"
+   },
+   {
+    "i": 33,
+    "t": 2246.449999999407,
+    "name": "Start the Grand Opening"
+   },
+   {
+    "i": 34,
+    "t": 2318.74999999967,
+    "name": "Grand Opening: serve 15 customers in the rush"
+   }
+  ],
+  "unlockAt": {
+   "seat_a2": 89.84999999999704,
+   "st_tuna": 153.20000000000059,
+   "rice": 222.65000000001638,
+   "storage": 244.95000000002145,
+   "chef": 340.05000000004304,
+   "queue": 377.6500000000516,
+   "cashier": 420.3000000000613,
+   "belt_b": 571.500000000028,
+   "st_maki": 649.6499999999569,
+   "cleaner": 702.3999999999089,
+   "vip_lounge": 869.6999999997568,
+   "seat_a3": 964.7499999996703,
+   "st_premium": 976.9999999996592,
+   "seats_a67": 1034.6499999996067,
+   "st_drink": 1132.5999999995176,
+   "seats_a45": 1176.199999999478,
+   "st_dessert": 1363.099999999308,
+   "waiter": 1434.3499999992432,
+   "vip_sofa2": 1507.5999999991766,
+   "hall": 1612.0999999990815,
+   "manager": 1784.3499999989249,
+   "final_decor": 1955.3999999987693,
+   "grand_open": 2246.449999999407
+  },
+  "phaseAt": {
+   "1": 0,
+   "2": 147.9499999999994,
+   "3": 195.20000000001014,
+   "4": 420.3000000000613,
+   "5": 716.8999999998957,
+   "6": 1034.6499999996067,
+   "7": 1555.7999999991328,
+   "8": 1641.8999999990544
+  },
+  "stats": {
+   "playTime": 2318.74999999967,
+   "ingPicked": 79,
+   "tasksDone": 35,
+   "made_salmon": 748,
+   "made": 1163,
+   "beltLoaded": 835,
+   "beltLoadedAll": 835,
+   "platesTaken": 821,
+   "cleaned": 921,
+   "paid": 342,
+   "happy": 257,
+   "earned": 18428,
+   "washed": 921,
+   "made_tuna": 252,
+   "autoFed": 1083,
+   "chefLoaded": 762,
+   "made_maki": 52,
+   "angry": 70,
+   "made_premium": 46,
+   "tableServed": 97,
+   "vip1Served": 9,
+   "vipServed": 12,
+   "made_drink": 27,
+   "drinksServed": 16,
+   "made_dessert": 38,
+   "dessertsServed": 18,
+   "waiterServed": 105,
+   "vip2Served": 3,
+   "boosts": 12,
+   "rushServed": 15
+  },
+  "coins": 1361,
+  "stars": 84,
+  "purchases": 37,
+  "maxGap": 236.0000000006571,
+  "avgGap": 62.30945945944923,
+  "dupErr": 0,
+  "maxPlates": 14
+ }
+]

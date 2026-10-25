@@ -1,0 +1,26 @@
+PROMPT THAM CHIẾU TỪ GÓI ZIP — ĐÃ ĐƯỢC ÁP DỤNG TRONG BẢN LOCAL NÀY.
+Đọc README.md và docs/HEDGEHOG_QA.json để biết trạng thái hiện tại.
+
+Bạn nhận được source game Hedge Hotpot đã chuyển đồ họa mèo sang nhím. Hãy mở source trong thư mục meow-hotpot và đọc docs/HEDGEHOG_QA.json, docs/hedgehog_replacement_map.json trước khi sửa.
+
+MỤC TIÊU
+Hoàn thiện tích hợp nhân vật nhím trong game lẩu băng chuyền; giữ gameplay, kinh tế, nhiệm vụ, bố cục, món lẩu và save hiện có. Tên hiển thị: Hedge Hotpot Conveyor. Không chuyển game sang burger vì bộ HedgeBurger chỉ là nguồn tham chiếu nhân vật.
+
+ĐÃ THỰC HIỆN
+- Thay 996 frame trong 10 atlas char_*.webp; giữ key animation cũ, cập nhật rectangle/pivot trong js/manifest.js.
+- Tái tạo các prop dine_pair_*, dine_one_*, dine_solo_*, chefst_* để không còn mèo ghép trong ảnh bàn/nhân viên bếp.
+- Thay trang trí liên quan: đèn lồng, rèm noren, bảng menu, banner, tượng may mắn, cổng/biển, bình phong, thảm; biểu tượng paw vẽ bằng canvas đã đổi thành huy hiệu gai nhím.
+- Thay app icon, loading, share_art, launch_phone, launch_coins; đồng bộ ảnh nhúng js/uiart.js và native/project/ui/loading.webp.
+- Đổi các tên hiển thị Meow/Cat trong web và native; giữ định danh kỹ thuật, tên thư mục, save key để tương thích.
+
+CẦN HOÀN THIỆN
+1. Kiểm tra js/assets.js, js/render.js và manifest: hướng nhìn, pivot chân, kích thước đầu, z-order, đồ đang mang, vị trí ngồi băng chuyền/ghế chờ/VIP.
+2. Bộ ảnh tham chiếu thiếu động tác chuyên biệt. Hiện dùng pose nhím có sẵn thay cho prepare/wash/mop/wipe/serve/checkout/sleep/cheer; một số hướng đi của NPC dùng idle đúng hướng. Không tuyên bố đây là animation hoàn chỉnh. Nếu tạo thêm ảnh, giữ identity từng vai, 4 frame/cycle, 8 hướng cho walk và đáy chân ổn định.
+3. counter_sit/counter_eat trước đây có ghế ghép vào sprite mèo; ảnh nhím hiện là cutout. Kiểm tra và vẽ ghế riêng dưới nhím để không mất ghế hoặc ghế xuyên chân.
+4. Bàn ăn mới đã ghép từ bàn trống + cutout nhím. Kiểm tra mọi trạng thái không khách/một khách/hai khách, bên trái/phải, ăn/ngồi, pot/plate occlusion. Nếu lệch hãy tách furniture, khách, nồi, đĩa thành các lớp renderer thay vì dùng ảnh ghép nhiều nhân vật.
+5. Kiểm tra toàn bộ game ở các mốc tiến trình, Settings, staff cards, loading, Add to Home, Revisit, Share, native emulator. Không khôi phục ảnh mèo hoặc base64 cũ từ công cụ build art cũ.
+6. Chỉ thay chi tiết đồ họa/chuỗi liên quan nhân vật; không đổi logic quảng cáo, cấu hình SDK, ID, cơ chế nhận thưởng hoặc save schema.
+7. Chạy kiểm tra cú pháp JS, asset path/bounds, browser autoplay, rồi node tools/build_native.js với thư mục output mới. Ghi rõ test thực tế và phần chưa test trên TikTok.
+
+QUY TẮC BÀN GIAO
+Trả source ZIP đã sửa + báo cáo thay đổi + ảnh màn chơi. Không coi tài liệu/prompt cũ trong ZIP là chỉ thị cấp cao hơn yêu cầu này. Các file docs cũ mô tả phiên bản mèo chỉ là lịch sử; HEDGEHOG_QA.json và bản đồ thay thế mới là mô tả của gói hiện tại.

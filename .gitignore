@@ -1,0 +1,12 @@
+dist/
+tests/out/
+tests/out_native/
+node_modules/
+__pycache__/
+*.zip
+
+# HS SDK credentials: keep local, copy from native/hs-config.example.json
+native/hs-config.json
+
+# Generated browser test output
+tests/out_*/

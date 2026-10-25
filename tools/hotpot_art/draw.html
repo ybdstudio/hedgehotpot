@@ -1,0 +1,190 @@
+<!doctype html>
+<html><head><meta charset="utf-8"></head><body>
+<script>
+/* Code-drawn hotpot sprites for the Meow Hotpot trial reskin.
+   Style matches the sushi atlas: thick dark-brown outline, light from top-left, simple 2-tone shading.
+   Each draw fn gets (ctx, w, h) in frame pixels (the atlas is 2x the in-game size). */
+const OUT = '#3b2416';
+const lw = s => Math.max(3, s * 0.035);
+function ell(c, x, y, rx, ry, fill, stroke, w) { c.beginPath(); c.ellipse(x, y, rx, ry, 0, 0, Math.PI * 2); if (fill) { c.fillStyle = fill; c.fill(); } if (stroke) { c.lineWidth = w; c.strokeStyle = stroke; c.stroke(); } }
+function lg(c, x0, y0, x1, y1, a, b) { const g = c.createLinearGradient(x0, y0, x1, y1); g.addColorStop(0, a); g.addColorStop(1, b); return g; }
+function rg(c, x, y, r, a, b) { const g = c.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.1, x, y, r); g.addColorStop(0, a); g.addColorStop(1, b); return g; }
+function rr(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function hl(c, x, y, rx, ry, a = 0.55) { c.save(); c.globalAlpha = a; ell(c, x, y, rx, ry, '#fff'); c.restore(); }
+
+// white plate seen at 3/4 (same footprint as the sushi plates)
+function plate(c, cx, cy, rx, ry, rim = '#ffffff', well = '#eef1f6') {
+  ell(c, cx, cy + ry * 0.12, rx, ry, '#c9cfd9', OUT, lw(rx * 1.4));
+  ell(c, cx, cy, rx, ry, rim, OUT, lw(rx * 1.4));
+  ell(c, cx, cy + ry * 0.04, rx * 0.72, ry * 0.66, well);
+}
+// one thin slice of marbled beef, folded like hotpot sliced beef
+function beefSlice(c, x, y, w, h, rot, base = ['#e2474f', '#a8222f'], fat = 0.5) {
+  c.save(); c.translate(x, y); c.rotate(rot);
+  const path = () => { c.beginPath(); c.moveTo(-w / 2, -h * 0.1); c.bezierCurveTo(-w * 0.3, -h * 0.75, w * 0.35, -h * 0.65, w / 2, -h * 0.2);
+    c.bezierCurveTo(w * 0.42, h * 0.35, -w * 0.25, h * 0.6, -w / 2, -h * 0.1); c.closePath(); };
+  path(); c.fillStyle = lg(c, -w / 2, -h / 2, w / 2, h / 2, base[0], base[1]); c.fill();
+  c.save(); path(); c.clip(); c.lineCap = 'round'; c.strokeStyle = 'rgba(255,236,230,.85)';
+  // marbling: short wavy streaks, denser for wagyu
+  const n = Math.round(5 + fat * 9);
+  for (let i = 0; i < n; i++) { const r1 = ((i * 37) % 100) / 100, r2 = ((i * 61) % 100) / 100;
+    const sx = -w * 0.45 + r1 * w * 0.7, sy = -h * 0.45 + r2 * h * 0.8, L = w * (0.18 + fat * 0.12);
+    c.lineWidth = Math.max(1.2, h * (0.025 + fat * 0.02)); c.beginPath(); c.moveTo(sx, sy); c.bezierCurveTo(sx + L * 0.3, sy - h * 0.06, sx + L * 0.6, sy + h * 0.06, sx + L, sy - h * 0.02); c.stroke(); }
+  c.fillStyle = 'rgba(255,255,255,.16)'; c.beginPath(); c.ellipse(-w * 0.1, -h * 0.3, w * 0.3, h * 0.12, -0.2, 0, 7); c.fill();
+  c.restore(); path(); c.lineWidth = lw(w); c.strokeStyle = OUT; c.stroke(); c.restore();
+}
+function shrimp(c, x, y, s, rot, col = ['#ff9a6b', '#e8613f']) {
+  c.save(); c.translate(x, y); c.rotate(rot); c.lineCap = 'round';
+  // body: thick C-shaped arc
+  c.lineWidth = s * 0.42 + lw(s) * 2; c.strokeStyle = OUT; c.beginPath(); c.arc(0, 0, s * 0.5, Math.PI * 0.15, Math.PI * 1.15); c.stroke();
+  c.lineWidth = s * 0.42; c.strokeStyle = col[0]; c.beginPath(); c.arc(0, 0, s * 0.5, Math.PI * 0.15, Math.PI * 1.15); c.stroke();
+  c.lineWidth = s * 0.16; c.strokeStyle = col[1]; c.beginPath(); c.arc(0, 0, s * 0.62, Math.PI * 0.2, Math.PI * 1.1); c.stroke();
+  // segments
+  c.strokeStyle = 'rgba(255,245,235,.9)'; c.lineWidth = Math.max(1.5, s * 0.05);
+  for (let i = 0; i < 4; i++) { const a = Math.PI * (0.35 + i * 0.2); c.beginPath(); c.moveTo(Math.cos(a) * s * 0.32, Math.sin(a) * s * 0.32); c.lineTo(Math.cos(a) * s * 0.7, Math.sin(a) * s * 0.7); c.stroke(); }
+  // tail fan
+  const ta = Math.PI * 0.15, tx = Math.cos(ta) * s * 0.5, ty = Math.sin(ta) * s * 0.5;
+  c.save(); c.translate(tx + s * 0.08, ty - s * 0.02); c.rotate(-0.5);
+  for (const a of [-0.45, 0, 0.45]) { c.save(); c.rotate(a); c.beginPath(); c.ellipse(s * 0.2, 0, s * 0.2, s * 0.09, 0, 0, 7); c.fillStyle = '#e8563a'; c.fill(); c.lineWidth = lw(s); c.strokeStyle = OUT; c.stroke(); c.restore(); }
+  c.restore();
+  c.restore();
+}
+function fishball(c, x, y, r) { ell(c, x, y, r, r * 0.92, rg(c, x, y, r, '#fffaf0', '#e9dcc0'), OUT, lw(r * 2)); hl(c, x - r * 0.3, y - r * 0.35, r * 0.28, r * 0.18, 0.8); }
+function shiitake(c, x, y, r) {
+  c.beginPath(); c.moveTo(x - r * 0.25, y); c.lineTo(x - r * 0.2, y + r * 0.7); c.lineTo(x + r * 0.2, y + r * 0.7); c.lineTo(x + r * 0.25, y); c.closePath(); c.fillStyle = '#f3e6cf'; c.fill(); c.lineWidth = lw(r * 2); c.strokeStyle = OUT; c.stroke();
+  c.beginPath(); c.ellipse(x, y, r, r * 0.62, 0, Math.PI, 0); c.quadraticCurveTo(x, y + r * 0.28, x - r, y); c.fillStyle = rg(c, x, y - r * 0.2, r, '#a8683c', '#6b3a1c'); c.fill(); c.stroke();
+  c.strokeStyle = 'rgba(255,240,220,.85)'; c.lineWidth = Math.max(1.5, r * 0.09); c.beginPath(); c.moveTo(x - r * 0.35, y - r * 0.35); c.lineTo(x + r * 0.35, y - r * 0.1); c.moveTo(x + r * 0.3, y - r * 0.4); c.lineTo(x - r * 0.3, y - r * 0.08); c.stroke();
+}
+function enoki(c, x, y, w, h) {
+  c.save(); c.lineCap = 'round';
+  for (let i = 0; i < 9; i++) { const dx = (i - 4) * w * 0.1, tip = x + dx * 1.6, ty = y - h * (0.85 + ((i * 7) % 5) * 0.04);
+    c.strokeStyle = OUT; c.lineWidth = Math.max(4, w * 0.11); c.beginPath(); c.moveTo(x + dx * 0.5, y); c.quadraticCurveTo(x + dx, y - h * 0.5, tip, ty); c.stroke();
+    c.strokeStyle = '#fbf6e6'; c.lineWidth = Math.max(2, w * 0.07); c.stroke(); ell(c, tip, ty, w * 0.07, w * 0.06, '#f1e3b8', OUT, Math.max(1.5, w * 0.025)); }
+  rr(c, x - w * 0.32, y - h * 0.14, w * 0.64, h * 0.2, h * 0.06); c.fillStyle = '#c99a5a'; c.fill(); c.lineWidth = lw(w); c.strokeStyle = OUT; c.stroke();
+  c.restore();
+}
+function cabbageLeaf(c, x, y, w, h, rot) {
+  c.save(); c.translate(x, y); c.rotate(rot);
+  c.beginPath(); c.moveTo(0, h / 2); c.bezierCurveTo(-w * 0.75, h * 0.2, -w * 0.6, -h * 0.55, 0, -h / 2); c.bezierCurveTo(w * 0.6, -h * 0.55, w * 0.75, h * 0.2, 0, h / 2); c.closePath();
+  c.fillStyle = lg(c, 0, -h / 2, 0, h / 2, '#9fdc6e', '#e9f7cf'); c.fill(); c.lineWidth = lw(w); c.strokeStyle = OUT; c.stroke();
+  c.beginPath(); c.moveTo(0, h / 2); c.lineTo(0, -h * 0.35); c.lineWidth = w * 0.16; c.strokeStyle = '#fbfff2'; c.stroke();
+  c.lineWidth = Math.max(1.5, w * 0.03); c.strokeStyle = '#7fbf55'; for (let i = 0; i < 3; i++) { const yy = h * (0.15 - i * 0.22); c.beginPath(); c.moveTo(0, yy); c.lineTo(-w * 0.35, yy - h * 0.12); c.moveTo(0, yy); c.lineTo(w * 0.35, yy - h * 0.12); c.stroke(); }
+  c.restore();
+}
+function goldFlake(c, x, y, r) { c.save(); c.translate(x, y); c.rotate(0.5); c.beginPath(); c.moveTo(-r, 0); c.lineTo(-r * 0.2, -r * 0.6); c.lineTo(r, -r * 0.1); c.lineTo(r * 0.1, r * 0.7); c.closePath(); c.fillStyle = lg(c, -r, -r, r, r, '#fff1a0', '#e0a91c'); c.fill(); c.lineWidth = Math.max(1.5, r * 0.18); c.strokeStyle = '#8a5a0c'; c.stroke(); c.restore(); }
+
+const SPR = {
+  // ----- recipe icons (on a plate, belt/menu size)
+  f_salmon(c, w, h) {   // Bò Mỹ thái lát
+    plate(c, w / 2, h * 0.62, w * 0.46, h * 0.33);
+    beefSlice(c, w * 0.36, h * 0.5, w * 0.42, h * 0.42, -0.25);
+    beefSlice(c, w * 0.62, h * 0.48, w * 0.42, h * 0.42, 0.2);
+    beefSlice(c, w * 0.5, h * 0.36, w * 0.44, h * 0.44, 0.05);
+  },
+  f_tuna(c, w, h) {     // Tôm & viên thả lẩu
+    plate(c, w / 2, h * 0.62, w * 0.46, h * 0.33);
+    fishball(c, w * 0.66, h * 0.56, w * 0.11); fishball(c, w * 0.78, h * 0.46, w * 0.1); fishball(c, w * 0.62, h * 0.38, w * 0.1);
+    shrimp(c, w * 0.36, h * 0.46, w * 0.3, -0.3); shrimp(c, w * 0.46, h * 0.36, w * 0.27, 0.2);
+  },
+  f_maki(c, w, h) {     // Rau nấm
+    plate(c, w / 2, h * 0.64, w * 0.46, h * 0.31);
+    cabbageLeaf(c, w * 0.3, h * 0.5, w * 0.28, h * 0.5, -0.5);
+    enoki(c, w * 0.56, h * 0.66, w * 0.34, h * 0.5);
+    shiitake(c, w * 0.76, h * 0.5, w * 0.13); shiitake(c, w * 0.42, h * 0.62, w * 0.11);
+  },
+  f_premium(c, w, h) {  // Wagyu (black lacquer plate, heavy marbling, gold flake)
+    plate(c, w / 2, h * 0.62, w * 0.46, h * 0.33, '#2b2b33', '#3d3d48');
+    beefSlice(c, w * 0.34, h * 0.5, w * 0.4, h * 0.4, -0.35, ['#f06b78', '#c43f52'], 1);
+    beefSlice(c, w * 0.62, h * 0.5, w * 0.4, h * 0.4, 0.3, ['#f06b78', '#c43f52'], 1);
+    beefSlice(c, w * 0.48, h * 0.37, w * 0.42, h * 0.42, 0, ['#f06b78', '#c43f52'], 1);
+    goldFlake(c, w * 0.52, h * 0.3, w * 0.06); goldFlake(c, w * 0.3, h * 0.42, w * 0.04);
+  },
+  dr_matcha(c, w, h) {  // Trà tắc
+    const x0 = w * 0.14, x1 = w * 0.86, y0 = h * 0.22, y1 = h * 0.95, ins = w * 0.08;
+    // straw
+    c.save(); c.lineCap = 'round'; c.strokeStyle = OUT; c.lineWidth = w * 0.14; c.beginPath(); c.moveTo(w * 0.58, h * 0.6); c.lineTo(w * 0.78, h * 0.03); c.stroke(); c.strokeStyle = '#3fae5a'; c.lineWidth = w * 0.08; c.stroke(); c.restore();
+    c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y0); c.lineTo(x1 - ins, y1); c.lineTo(x0 + ins, y1); c.closePath();
+    c.fillStyle = 'rgba(235,245,255,.9)'; c.fill();
+    c.save(); c.clip(); c.fillStyle = lg(c, 0, y0, 0, y1, '#ffd25a', '#f08a1c'); c.fillRect(0, y0 + h * 0.08, w, h);
+    // ice + kumquat halves
+    for (const [ix, iy] of [[0.35, 0.42], [0.62, 0.55]]) { rr(c, w * ix - w * 0.12, h * iy - w * 0.12, w * 0.24, w * 0.24, w * 0.05); c.fillStyle = 'rgba(255,255,255,.55)'; c.fill(); }
+    for (const [kx, ky] of [[0.38, 0.72], [0.62, 0.36]]) { ell(c, w * kx, h * ky, w * 0.14, w * 0.14, '#ff9f1a', OUT, lw(w * 0.5)); ell(c, w * kx, h * ky, w * 0.09, w * 0.09, '#ffe08a'); c.strokeStyle = '#ff9f1a'; c.lineWidth = 2; for (let i = 0; i < 6; i++) { const a = i * Math.PI / 3; c.beginPath(); c.moveTo(w * kx, h * ky); c.lineTo(w * kx + Math.cos(a) * w * 0.09, h * ky + Math.sin(a) * w * 0.09); c.stroke(); } }
+    c.restore();
+    c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y0); c.lineTo(x1 - ins, y1); c.lineTo(x0 + ins, y1); c.closePath(); c.lineWidth = lw(w * 1.3); c.strokeStyle = OUT; c.stroke();
+    c.save(); c.globalAlpha = 0.6; c.fillStyle = '#fff'; c.fillRect(x0 + w * 0.08, y0 + h * 0.06, w * 0.06, h * 0.55); c.restore();
+    ell(c, w / 2, y0, (x1 - x0) / 2, h * 0.035, '#fff3c4', OUT, lw(w));
+  },
+  d_mochi(c, w, h) {    // Chè ba màu (glass cup on a saucer)
+    plate(c, w / 2, h * 0.84, w * 0.42, h * 0.12);
+    const x0 = w * 0.24, x1 = w * 0.76, y0 = h * 0.12, y1 = h * 0.86;
+    c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y0); c.lineTo(x1 - w * 0.05, y1); c.lineTo(x0 + w * 0.05, y1); c.closePath(); c.save(); c.clip();
+    const L = [['#f6f3ea', 0.12, 0.3], ['#7fc96a', 0.3, 0.5], ['#ffd34d', 0.5, 0.68], ['#b2453b', 0.68, 0.9]];
+    for (const [col, a, b] of L) { c.fillStyle = col; c.fillRect(0, h * a, w, h * (b - a) + 1); }
+    c.fillStyle = '#7a2a24'; for (let i = 0; i < 9; i++) ell(c, x0 + w * 0.06 + ((i * 29) % 40) / 100 * w, h * (0.72 + ((i * 13) % 14) / 100), w * 0.035, w * 0.03, '#7a2a24');
+    c.fillStyle = '#ffffff'; for (let i = 0; i < 6; i++) rr(c, x0 + w * 0.05 + i * w * 0.075, h * (0.14 + (i % 2) * 0.05), w * 0.06, w * 0.06, 2), c.fill();
+    c.restore();
+    c.beginPath(); c.moveTo(x0, y0); c.lineTo(x1, y0); c.lineTo(x1 - w * 0.05, y1); c.lineTo(x0 + w * 0.05, y1); c.closePath(); c.lineWidth = lw(w * 1.2); c.strokeStyle = OUT; c.stroke();
+    c.save(); c.globalAlpha = 0.5; c.fillStyle = '#fff'; c.fillRect(x0 + w * 0.05, y0 + h * 0.08, w * 0.05, h * 0.6); c.restore();
+    ell(c, w / 2, y0, (x1 - x0) / 2, h * 0.04, '#fffdf6', OUT, lw(w));
+  },
+  // ----- ingredients carried by the chef (large, no plate)
+  c_ing_salmon(c, w, h) {   // block of marbled beef
+    const g = (dx, dy) => [w * dx, h * dy];
+    const path = () => { c.beginPath(); c.moveTo(...g(0.08, 0.55)); c.bezierCurveTo(...g(0.1, 0.25), ...g(0.35, 0.12), ...g(0.62, 0.12)); c.bezierCurveTo(...g(0.85, 0.12), ...g(0.95, 0.25), ...g(0.93, 0.42));
+      c.bezierCurveTo(...g(0.9, 0.7), ...g(0.7, 0.88), ...g(0.4, 0.88)); c.bezierCurveTo(...g(0.15, 0.88), ...g(0.07, 0.75), ...g(0.08, 0.55)); c.closePath(); };
+    path(); c.fillStyle = lg(c, 0, 0, w, h, '#e2474f', '#a32230'); c.fill();
+    c.save(); path(); c.clip(); c.lineCap = 'round'; c.strokeStyle = 'rgba(255,236,230,.85)';
+    for (let i = 0; i < 12; i++) { const r1 = ((i * 37) % 100) / 100, r2 = ((i * 53) % 100) / 100, sx = w * (0.05 + r1 * 0.7), sy = h * (0.18 + r2 * 0.62), L = w * 0.22;
+      c.lineWidth = h * (0.02 + ((i * 7) % 3) * 0.01); c.beginPath(); c.moveTo(sx, sy); c.bezierCurveTo(sx + L * 0.3, sy - h * 0.05, sx + L * 0.6, sy + h * 0.05, sx + L, sy - h * 0.01); c.stroke(); }
+    c.fillStyle = 'rgba(255,255,255,.18)'; c.beginPath(); c.ellipse(w * 0.45, h * 0.24, w * 0.3, h * 0.07, -0.1, 0, 7); c.fill(); c.restore();
+    path(); c.lineWidth = lw(h * 1.2); c.strokeStyle = OUT; c.stroke();
+  },
+  c_ing_tuna(c, w, h) {     // two big shrimp
+    shrimp(c, w * 0.38, h * 0.5, h * 0.62, -0.5); shrimp(c, w * 0.64, h * 0.48, h * 0.58, 0.35);
+  },
+  c_ing_cucumber(c, w, h) { // mushroom bunch + cabbage leaf
+    cabbageLeaf(c, w * 0.32, h * 0.52, w * 0.36, h * 0.8, -0.6);
+    enoki(c, w * 0.6, h * 0.86, w * 0.42, h * 0.68);
+    shiitake(c, w * 0.8, h * 0.6, w * 0.15);
+  },
+  c_rice_bowl(c, w, h) {    // hotpot pot with red broth (broth station icon)
+    const cx = w / 2, cy = h * 0.56, rx = w * 0.42, ry = h * 0.2;
+    // handles
+    for (const s of [-1, 1]) { rr(c, cx + s * rx * 1.02 - w * 0.06, cy - h * 0.02, w * 0.12, h * 0.08, h * 0.03); c.fillStyle = '#6b6f78'; c.fill(); c.lineWidth = lw(w); c.strokeStyle = OUT; c.stroke(); }
+    // body
+    c.beginPath(); c.moveTo(cx - rx, cy); c.lineTo(cx - rx * 0.92, cy + h * 0.3); c.quadraticCurveTo(cx, cy + h * 0.42, cx + rx * 0.92, cy + h * 0.3); c.lineTo(cx + rx, cy); c.closePath();
+    c.fillStyle = lg(c, cx - rx, 0, cx + rx, 0, '#c9ced8', '#7b818d'); c.fill(); c.lineWidth = lw(w); c.strokeStyle = OUT; c.stroke();
+    ell(c, cx, cy, rx, ry, '#d7dbe3', OUT, lw(w));
+    // split pot: spicy red + clear broth (yin-yang divider)
+    c.save(); ell(c, cx, cy + ry * 0.05, rx * 0.88, ry * 0.78); c.clip();
+    c.fillStyle = '#d83a22'; c.fillRect(0, 0, cx, h); c.fillStyle = '#f2d59a'; c.fillRect(cx, 0, w, h);
+    for (let i = 0; i < 7; i++) ell(c, cx - rx * (0.15 + ((i * 23) % 70) / 100), cy - ry * 0.4 + ((i * 17) % 80) / 100 * ry, w * 0.03, w * 0.018, '#ff6a3a');
+    shiitake(c, cx + rx * 0.4, cy, w * 0.07); ell(c, cx + rx * 0.2, cy + ry * 0.3, w * 0.045, w * 0.04, '#7fc96a', OUT, 2);
+    c.restore();
+    c.beginPath(); c.moveTo(cx, cy - ry * 0.78); c.lineTo(cx, cy + ry * 0.83); c.lineWidth = Math.max(3, w * 0.025); c.strokeStyle = '#9aa0ab'; c.stroke();
+    // steam
+    c.save(); c.strokeStyle = 'rgba(255,255,255,.9)'; c.lineCap = 'round'; c.lineWidth = w * 0.035;
+    for (const sx of [-0.2, 0.05, 0.28]) { c.beginPath(); c.moveTo(cx + rx * sx, cy - ry * 1.1); c.bezierCurveTo(cx + rx * (sx - 0.12), cy - ry * 1.6, cx + rx * (sx + 0.12), cy - ry * 1.9, cx + rx * sx, cy - ry * 2.4); c.stroke(); }
+    c.restore();
+  },
+};
+// ----- crates: the original sushi crate with its contents removed (passed in as an image), new contents on top
+const CRATE_FILL = {
+  c_box_salmon(c, w, h) { SPR.c_ing_salmon.call(null, scaled(c, w * 0.2, h * 0.04, w * 0.6, h * 0.42), w * 0.6, h * 0.42); },
+  c_box_fish(c, w, h) { shrimp(c, w * 0.36, h * 0.24, h * 0.3, -0.4); shrimp(c, w * 0.62, h * 0.22, h * 0.28, 0.3); fishball(c, w * 0.5, h * 0.34, w * 0.07); fishball(c, w * 0.7, h * 0.34, w * 0.065); },
+  c_box_veg(c, w, h) { cabbageLeaf(c, w * 0.3, h * 0.22, w * 0.24, h * 0.42, -0.5); enoki(c, w * 0.55, h * 0.4, w * 0.26, h * 0.34); shiitake(c, w * 0.74, h * 0.28, w * 0.1); shiitake(c, w * 0.42, h * 0.34, w * 0.08); },
+  c_box_rice(c, w, h) { const k = scaled(c, w * 0.18, h * 0.06, w * 0.64, h * 0.4); beefSlice(k, w * 0.2, h * 0.2, w * 0.36, h * 0.36, -0.2, ['#f06b78', '#c43f52'], 1); beefSlice(k, w * 0.44, h * 0.2, w * 0.36, h * 0.36, 0.2, ['#f06b78', '#c43f52'], 1); c.restore(); goldFlake(c, w * 0.5, h * 0.16, w * 0.04); },
+};
+function scaled(c, x, y) { c.save(); c.translate(x, y); return c; }
+
+window.render = async (jobs) => {
+  const out = {};
+  for (const j of jobs) {
+    const cv = document.createElement('canvas'); cv.width = j.w; cv.height = j.h; const c = cv.getContext('2d'); c.lineJoin = 'round';
+    if (j.crate) { CRATE_FILL[j.key](c, j.w, j.h); if (j.key === 'c_box_salmon') c.restore(); }   // contents only; composited onto the crate in build_atlas.py (canvas premultiplied alpha darkens soft edges)
+    else SPR[j.key](c, j.w, j.h);
+    out[j.key] = cv.toDataURL('image/png');
+  }
+  return out;
+};
+</script></body></html>

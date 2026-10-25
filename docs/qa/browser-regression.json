@@ -1,0 +1,91 @@
+{
+ "when": "2026-10-25T09:40:10.738Z",
+ "device": "iPhone 13 (Chromium emulation)",
+ "results": [
+  {
+   "id": 1,
+   "name": "Game starts without a blank screen",
+   "pass": true,
+   "detail": "canvas pixel std-dev 147.1, page errors 0"
+  },
+  {
+   "id": 2,
+   "name": "Characters render correctly in all directions",
+   "pass": true,
+   "detail": "3520 frames, 0 missing, 1840/1840 direction sets populated (see sprite_sheet_check.png)"
+  },
+  {
+   "id": 3,
+   "name": "Walking animations preserve proportions",
+   "pass": true,
+   "detail": "max frame-height variation inside one walk cycle 0.0% ()"
+  },
+  {
+   "id": 4,
+   "name": "Conveyor plates move continuously",
+   "pass": true,
+   "detail": "5/5 plates advanced over 1 s at 34 u/s"
+  },
+  {
+   "id": 5,
+   "name": "Customers take the correct sushi",
+   "pass": true,
+   "detail": "791 pickups verified, 0 wrong"
+  },
+  {
+   "id": 6,
+   "name": "Plates are not duplicated",
+   "pass": true,
+   "detail": "duplicate-id samples 0, over-capacity samples 0"
+  },
+  {
+   "id": 7,
+   "name": "Customers complete the payment cycle",
+   "pass": true,
+   "detail": "27 customers paid, 758 coins earned"
+  },
+  {
+   "id": 8,
+   "name": "Cleaner clears dirty seats",
+   "pass": true,
+   "detail": "dirty plates 30→30, cleaner collected 16 plates in 40 s with the player idle"
+  },
+  {
+   "id": 9,
+   "name": "Employees perform assigned tasks",
+   "pass": true,
+   "detail": "staff chef, cashier, cleaner, waiter; chef loaded 459 plates, 691 plates cleaned, waiter served 96"
+  },
+  {
+   "id": 10,
+   "name": "Upgrades apply correctly",
+   "pass": true,
+   "detail": "beltSpeed Lv2: 42→50; beltCap Lv1: 7→10; carry Lv2: 6→8; prod Lv1: 1.35→1.7550000000000001"
+  },
+  {
+   "id": 11,
+   "name": "Expansion unlocks in order",
+   "pass": true,
+   "detail": "15 future unlocks could not be bought early (bought 0); pad order monotonic: true"
+  },
+  {
+   "id": 12,
+   "name": "VIP customers use correct sofas and animations",
+   "pass": true,
+   "detail": "1 VIP seatings, 0 on a wrong sofa; sofa frames {\"vip2\":\"vip2.sit.front.0\"}; served VIP1 1, VIP2 1"
+  },
+  {
+   "id": 13,
+   "name": "Save/load works",
+   "pass": true,
+   "detail": "before {\"coins\":1337,\"task\":35,\"unlocked\":23,\"stars\":74} → after reload {\"coins\":1337,\"task\":35,\"unlocked\":23,\"stars\":74,\"staff\":5}"
+  },
+  {
+   "id": 14,
+   "name": "Grand Opening milestone is reachable",
+   "pass": true,
+   "detail": "completed=true at game time 39:24 (task 35)"
+  }
+ ],
+ "errors": []
+}

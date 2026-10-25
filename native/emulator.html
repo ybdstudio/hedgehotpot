@@ -1,0 +1,63 @@
+<!doctype html><html><head><meta charset="utf-8"><base href="../meow-hotpot/"><meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<link rel="icon" href="data:,"><title>Hedge Hotpot – native runtime emulator</title>
+<style>html,body{margin:0;height:100%;background:#111;overflow:hidden;touch-action:none}#cv{position:fixed;inset:0;width:100vw;height:100vh;display:block}</style></head>
+<body><canvas id="cv"></canvas>
+<script>
+/* Minimal tt.* emulator so the native build (game.js) can be played/tested in a desktop browser. Not shipped. */
+(function () {
+  const cv = document.getElementById('cv'); let first = true; const L = {};
+  const on = k => f => { (L[k] = L[k] || []).push(f); };
+  const map = e => ({ changedTouches: [{ identifier: e.pointerId, clientX: e.clientX, clientY: e.clientY }] });
+  cv.addEventListener('pointerdown', e => (L.ts || []).forEach(f => f(map(e))));
+  window.addEventListener('pointermove', e => (L.tm || []).forEach(f => f(map(e))));
+  window.addEventListener('pointerup', e => (L.te || []).forEach(f => f(map(e))));
+  window.__ALLOW_MOCK_ADS = new URLSearchParams(location.search).get('noads') !== '1';   // test-ad overlay when no fake SDK
+  const Q = new URLSearchParams(location.search).get('ttquirks') === '1';   // mimic TikTok iOS quirks seen on device
+  if (Q) { const cg = AudioContext.prototype.createGain; AudioContext.prototype.createGain = function () { const g = cg.call(this); Object.defineProperty(g, 'gain', { value: { value: 1 } }); return g; }; }
+  const P = 'emu_';
+  window.tt = {
+    getSystemInfoSync: () => ({ windowWidth: innerWidth, windowHeight: innerHeight, pixelRatio: Math.min(3, devicePixelRatio), safeArea: { top: 44, bottom: innerHeight - 30 }, statusBarHeight: 44 }),
+    getMenuButtonBoundingClientRect: () => { const k = Q ? Math.min(3, devicePixelRatio) : 1; return { top: 50 * k, bottom: 82 * k, left: (innerWidth - 97) * k, right: (innerWidth - 10) * k }; },
+    createCanvas: () => { if (first) { first = false; return cv; } return document.createElement('canvas'); },
+    createImage: () => new Image(),
+    getStorageSync: k => { const v = localStorage.getItem(P + k); return v === null ? '' : v; }, setStorageSync: (k, v) => localStorage.setItem(P + k, v), removeStorageSync: k => localStorage.removeItem(P + k),
+    onTouchStart: on('ts'), onTouchMove: on('tm'), onTouchEnd: on('te'), onTouchCancel: on('tc'), onShow: on('show'), onHide: on('hide'),
+    loadSubpackage: o => { const t = { onProgressUpdate(f) { f({ progress: 50 }); setTimeout(() => f({ progress: 100 }), 100); } }; setTimeout(() => o.success && o.success(), 150); return t; },
+    vibrateShort() { }, vibrateLong() { }, login: o => o.success && o.success({ code: 'emu' }),
+    shareAppMessage: o => { window.__shared = o; setTimeout(() => o.success && o.success({}), 100); }
+  };
+  if (new URLSearchParams(location.search).get('fakeads') === '1') {
+    const mk = o => { const h = {}; (window.__adUnits = window.__adUnits || []).push(o && o.adUnitId); return { onClose: f => h.c = f, offClose() { }, onError: f => h.e = f, offError() { }, load: () => Promise.resolve(), show: () => { window.__adShown = (window.__adShown || 0) + 1; setTimeout(() => h.c && h.c({ isEnded: true }), 50); return Promise.resolve(); } }; };
+    tt.createRewardedVideoAd = mk; tt.createInterstitialAd = mk;
+  }
+})();
+</script>
+<script src="hs-tiktok-sdk.min.js"></script>
+<script>
+/* CommonJS require for the two HS files (the native runtime has a real require). */
+window.require = p => ({ './hs-tiktok-sdk.min.js': window.HSTikTokSDK, './hs-game.js': window.HSGame })[p];
+</script>
+<script src="hs-game.js"></script>
+<script>
+/* ?hsfake=1: a fake HS backend over tt.request serving ../meow-hotpot.hs-dashboard.json as the live dashboard
+   (unit types: Inter1 interstitial, the rest rewarded). Without it the SDK tries the real server and ads stay off. */
+(function () {
+  const q = new URLSearchParams(location.search); if (q.get('hsfake') !== '1') return;
+  const x = new XMLHttpRequest(); x.open('GET', '../meow-hotpot.hs-dashboard.json', false); x.send();
+  const iaa = JSON.parse(x.responseText).iaa_config, inter = new Set(['Inter1']);
+  const aps = [].concat(...iaa.placements.map(p => p.ads.map(a => ({ id: a.id, type: inter.has(p.label) ? 'interstitial' : 'rewarded', status: 'active' }))));
+  const route = (ep, data) => {
+    if (ep === '/api/login') return { success: true, session_token: 'emu', open_id: 'emu_open', last_updated_timestamp: 1, ack_required: true, refund_mode: 'auto', aps, iaa_config: JSON.stringify(iaa) };
+    if (ep === '/api/ads/config') return { success: true, aps, iaa_config: JSON.stringify(iaa) };
+    if (ep === '/api/pending_rewards') return { success: true, pending_count: 0, rewards: [] };
+    if (ep === '/api/sync') return { success: true, last_updated_timestamp: 2 };
+    if (ep === '/api/shop/items') return { success: true, items: [] };
+    if (ep === '/api/orders/mark_delivered') return { success: true, delivered: [], already: [], not_found: [], not_paid: [] };
+    return { success: false, error: 'emulator: no route ' + ep };
+  };
+  window.__hsRequests = [];
+  tt.request = o => { const ep = String(o.url).replace(/^https?:\/\/[^/]+/, ''); __hsRequests.push(ep); setTimeout(() => o.success && o.success({ statusCode: 200, data: JSON.stringify(route(ep, o.data)), header: {} }), 20); return { abort() { } }; };
+})();
+</script>
+<script src="game.js"></script>
+</body></html>

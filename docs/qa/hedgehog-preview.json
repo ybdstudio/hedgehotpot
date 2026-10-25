@@ -1,0 +1,34 @@
+{
+  "checks": [
+    {
+      "name": "All roles, logical actions, directions and atlas bounds",
+      "roles": 10,
+      "atlases": 11,
+      "errors": [],
+      "obsolete": []
+    },
+    {
+      "name": "Keyboard movement",
+      "pass": true
+    },
+    {
+      "name": "All five UI panels",
+      "pass": true
+    },
+    {
+      "name": "All unlocked areas, two customer identities on either chair, VIP and empty/one/two diner layers",
+      "pass": true
+    },
+    {
+      "name": "Standalone HTML opened from disk with networking offline",
+      "pass": true,
+      "networkRequests": 0
+    },
+    {
+      "name": "Native emulator boots with all hedgehog atlases",
+      "pass": true
+    }
+  ],
+  "errors": [],
+  "pass": true
+}

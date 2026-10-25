@@ -1,0 +1,11 @@
+const { chromium } = require('playwright'); const fs = require('fs');
+const fr = JSON.parse(fs.readFileSync('manifest.json')).atlases.props.frames;
+const crate = 'data:image/png;base64,' + fs.readFileSync('crate_empty.png').toString('base64');
+const plain = ['f_salmon','f_tuna','f_maki','f_premium','dr_matcha','d_mochi','c_ing_salmon','c_ing_tuna','c_ing_cucumber','c_rice_bowl'];
+const crates = ['c_box_salmon','c_box_fish','c_box_veg','c_box_rice'];
+(async () => { const b = await chromium.launch(); const p = await b.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
+  await p.goto('file:///home/claude/meow-hotpot-dev/tools/hotpot_art/draw.html');
+  const jobs = plain.map(k => ({ key: k, w: fr[k][2], h: fr[k][3] })).concat(crates.map(k => ({ key: k, w: 246, h: 206, crate: true })));
+  const out = await p.evaluate(j => window.render(j), jobs);
+  fs.mkdirSync('sprites', { recursive: true }); for (const k in out) fs.writeFileSync('sprites/' + k + '.png', Buffer.from(out[k].split(',')[1], 'base64'));
+  console.log(Object.keys(out).length, 'sprites', 'errors', JSON.stringify(errs)); await b.close(); })();
