@@ -1,5 +1,13 @@
 # Progress
 
+## 2026-10-26 — correct game branding to Hedge Tasco
+
+- Owner confirmed exact display name: Hedge Tasco.
+- Rename native/web Settings, mission instructions, share title, project metadata and exported package to Hedge Tasco / hedgetasco.
+- Update loading artwork and app icon; keep restaurant art theme, gameplay, economy, ads configuration and save keys.
+- Rebuild both manual and autoplay offline native archives; credentials still deferred.
+
+
 ## 2026-10-26 — standard native test baseline for autoplay split
 
 Done: rebuilt the manual native test (autoplay off, speed 1x); HS checker 0 FAIL / 8 deferred-ID warnings. Exported the standard native test ZIP. Autoplay/speed controls will be isolated on native/tiktok-autoplay-test. No push.

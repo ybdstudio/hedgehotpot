@@ -1,4 +1,4 @@
-/* Hedge Hotpot Conveyor — data-driven configuration (economy, layout, progression).
+/* Hedge Tasco — data-driven configuration (economy, layout, progression).
    Everything tunable lives here; tools/sim.js runs the real game logic against this file. */
 (function (root) {
   const CST = root.CST = root.CST || {};
@@ -74,7 +74,7 @@
       clean:     { name: 'Cleaning Speed',    icon: 'up_clean', costs: [350, 1000], minPhase: [4, 6] },
       staff:     { name: 'Staff Training',    icon: 'up_staff', costs: [700, 1700], minPhase: [6, 7] }
     },
-    // ---------------- ads (see 'Hedge Hotpot – Kịch bản Ads', option B: inter cooldown 75 s) ----------------
+    // ---------------- ads (see 'Hedge Tasco – Kịch bản Ads', option B: inter cooldown 75 s) ----------------
     ADS: {
       units: { rewarded: 'REWARDED_AD_UNIT_ID', inter: 'INTERSTITIAL_AD_UNIT_ID' },   // TikTok Minis ad unit ids (Developer Portal)
       interFirstDelay: 30, interFirstTask: 1, interFirstForce: true, interCooldown: 45, interAfterReward: 30, interCapSession: 30, interFallback: 90, interDelay: 0.6, resumeAfter: 60,

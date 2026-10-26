@@ -1,4 +1,4 @@
-/* Ads: rewarded + interstitial placements from 'Hedge Hotpot – Kịch bản Ads' (option B: inter cooldown 75 s).
+/* Ads: rewarded + interstitial placements from 'Hedge Tasco – Kịch bản Ads' (option B: inter cooldown 75 s).
    Uses the TikTok Minis SDK (window.TTMinis) when present; otherwise a short test-ad overlay so the flow can be played.
    Target: ~9 impressions / 10 min of play (5 inter at natural breaks + ~4 player-chosen rewarded). */
 (function (root) {
