@@ -16,11 +16,12 @@ OUTPUT = ROOT.parent / 'HedgeHotpot_TikTok_Native_Test.zip'
 
 def main():
     global PACKAGE, OUTPUT
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--package', type=Path, default=PACKAGE)
     parser.add_argument('--output', type=Path, default=OUTPUT)
     args = parser.parse_args()
-    PACKAGE, OUTPUT = args.package.resolve(), args.output.resolve()
+    PACKAGE = args.package.resolve()
+    OUTPUT = args.output.resolve()
     report = json.loads((ROOT / 'docs/qa/hs-sdk-1.1.3.json').read_text(encoding='utf-8'))
     if not report['ok']:
         raise SystemExit('HS checker must pass before packaging')

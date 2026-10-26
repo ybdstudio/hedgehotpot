@@ -243,6 +243,13 @@
         });
       } else if (this.panel === 'settings') {
         this.title = 'Settings'; const st = S.settings, play = Math.floor(g.stat('playTime'));
+        const test = CST.NATIVE_TEST, app = this.app;
+        if (test) {
+          const t = test.text;
+          R.push({ sec: t.section });
+          R.push({ title: t.autoplay, btn: [app.autoplay ? t.on : t.off, app.autoplay ? 'green' : 'toggleOff', () => app.setAutoplay(!app.autoplay), true] });
+          for (const speed of test.speeds) R.push({ title: `${t.speed} ${speed}x`, btn: [app.speed === speed ? t.selected : t.select, app.speed === speed ? 'green' : 'pink', () => app.setSpeed(speed)] });
+        }
         R.push({ title: 'Sound', btn: [st.sound ? 'On' : 'Off', st.sound ? 'green' : 'toggleOff', () => { st.sound = !st.sound; CST.Audio.on = st.sound; CST.Audio.fails = 0; if (st.sound) { CST.Audio.unlock(); } g.save(); }, true] });
         R.push({ title: 'Vibration', btn: [st.vib ? 'On' : 'Off', st.vib ? 'green' : 'toggleOff', () => { st.vib = !st.vib; g.save(); }, true] });
         R.push({ title: 'Progress', sub: `Played ${Math.floor(play / 60)}m ${play % 60}s · ${g.stat('paid')} customers · auto-saved`, btn: ['Save', 'green', () => { g.save(); this.toast('Saved!', 'c_fx_heart'); }] });

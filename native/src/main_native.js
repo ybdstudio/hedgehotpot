@@ -30,16 +30,22 @@
   // ---------------- app
   const App = root.APP = {
     speed: 1, autoplay: false, paused: false,
-    setAutoplay(v) { this.autoplay = v; if (v && !this.bot && CST.Bot) this.bot = new CST.Bot(this.game); },
+    setAutoplay(v) {
+      this.autoplay = !!v;
+      if (v && CST.Bot && (!this.bot || this.bot.g !== this.game)) this.bot = new CST.Bot(this.game);
+    },
+    setSpeed(v) { if (CST.NATIVE_TEST.speeds.includes(v)) this.speed = v; },
     resetGame() {
       const old = this.game; old.reset && old.reset(); old.opts.storage = null; old.listeners = {};
       try { storage.removeItem(CST.CONFIG.SAVE_KEY); } catch (e) { }
       const game = this.game = new CST.Game({ storage, seed: Date.now() & 0xffff, load: false }); game.save();
       this.renderer.g = game; this.renderer.follow(0, true); this.ui.bindGame(game); this.ui.close(); CST.Minis.bind(game);
+      this.bot = null; this.setAutoplay(this.autoplay);
       this.ui.toast('New restaurant! Grab beef from the crate', 'c_box_salmon', true);
     },
     start() {
       const game = this.game = new CST.Game({ storage, seed: Date.now() & 0xffff });
+      this.setAutoplay(true);
       CST.Audio.on = game.S.settings.sound;
       const r = this.renderer = new CST.Renderer(screen, game); r.resize(); r.follow(0, true);
       this.ui = new CST.UI(game, r, this);

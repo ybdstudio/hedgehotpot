@@ -12,7 +12,7 @@ const distRoot = path.resolve(R, 'dist');
 if (outDir !== distRoot && !outDir.startsWith(distRoot + path.sep)) throw new Error('Build output must be inside this repo/dist; refusing recursive cleanup elsewhere.');
 const PKG = path.join(outDir, 'hedgehotpot');
 const SHARED = ['config', 'nav', 'conveyor', 'game', 'bot', 'assets', 'render', 'audio'].map(n => 'js/' + n + '.js');
-const NATIVE = ['ui_native', 'hs_native', 'ads_native', 'minis_native', 'main_native'].map(n => 'native/src/' + n + '.js');
+const NATIVE = ['ui_native', 'hs_native', 'ads_native', 'minis_native', 'test_mode', 'main_native'].map(n => 'native/src/' + n + '.js');
 
 // ---- HS SDK config (native/hs-config.json + defaults from native/hedgehotpot.hs-dashboard.json)
 const HS_FILE = fs.existsSync(path.join(R, 'native/hs-config.json')) ? 'native/hs-config.json' : (console.warn('! native/hs-config.json missing: using empty draft credentials from native/hs-config.example.json (ads/cloud off)'), 'native/hs-config.example.json');

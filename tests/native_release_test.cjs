@@ -37,6 +37,9 @@ const check = (ok, name, detail) => {
     await page.waitForFunction(() => !!document.querySelector('iframe'));
     const frame = page.frames().find(f => /__hs_frame/.test(f.url()));
     await frame.waitForFunction(() => window.__game && window.APP && CST.HS.result);
+    // Reward assertions compare exact wallet deltas; freeze restaurant income
+    // without changing the SDK pause/resume state being tested below.
+    await frame.evaluate(() => { APP.speed = 0; });
     if (simulated) await frame.waitForFunction(() => HSGame.loggedIn && CST.Ads.canReward('R5'));
     return { page, frame, context };
   }
