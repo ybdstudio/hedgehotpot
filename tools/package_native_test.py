@@ -10,8 +10,8 @@ import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PACKAGE = ROOT / 'dist/tiktok-test/hedgehotpot'
-OUTPUT = ROOT.parent / 'HedgeHotpot_TikTok_Native_Test.zip'
+PACKAGE = ROOT / 'dist/tiktok-autoplay/hedgehotpot'
+OUTPUT = ROOT.parent / 'HedgeHotpot_TikTok_Native_Autoplay_Test.zip'
 
 
 def main():

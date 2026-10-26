@@ -1,0 +1,148 @@
+{
+  "ok": true,
+  "fails": 0,
+  "warns": 8,
+  "lines": [
+    {
+      "level": "PASS",
+      "msg": "native package (game.js, no index.html)"
+    },
+    {
+      "level": "WARN",
+      "msg": "project.config.json appid is not set",
+      "fix": "put the TikTok App ID there (or the Client Key, if your TikTok CLI asks for that) before uploading — INTEGRATE-WITH-AI.md, step 0"
+    },
+    {
+      "level": "PASS",
+      "msg": "SDK v1.1.3"
+    },
+    {
+      "level": "PASS",
+      "msg": "TikTok review: Entry Reward, Launch Reward and Share are in the code"
+    },
+    {
+      "level": "PASS",
+      "msg": "boots in the native runtime without errors"
+    },
+    {
+      "level": "PASS",
+      "msg": "SDK started (host: minigame)"
+    },
+    {
+      "level": "PASS",
+      "msg": "login over tt.request, with delivery confirmation"
+    },
+    {
+      "level": "PASS",
+      "msg": "a 3 s rewarded ad with no hide event completes (iOS case)"
+    },
+    {
+      "level": "PASS",
+      "msg": "this build can give: double_task_bonus {\"double_task\":1} · finish_building {\"finish_pad\":1} · hedge_rush {\"hedge_rush\":1} · vip_tip {\"vip_tip\":1} · free_coins {\"free_coins\":1} · rush_extend {\"rush_extend\":1} · share {\"coins\":50} · tiktok_shortcut {\"coins\":80,\"stars\":1} · tiktok_profile {\"coins\":60}"
+    },
+    {
+      "level": "INFO",
+      "msg": "uses: cloud save (3.0 save), ads, share, TikTok missions"
+    },
+    {
+      "level": "INFO",
+      "msg": "ad places in the code: double_task_bonus, finish_building, hedge_rush, vip_tip, free_coins, rush_extend, phase_continue"
+    },
+    {
+      "level": "INFO",
+      "msg": "reward keys in the code: double_task_bonus, finish_building, hedge_rush, vip_tip, free_coins, rush_extend, tiktok_profile, tiktok_shortcut, share"
+    },
+    {
+      "level": "INFO",
+      "msg": "item categories the game handles: ad_effect, currency"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"double_task_bonus\": ad id \"<AD_UNIT_ID_R1>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"finish_building\": ad id \"<AD_UNIT_ID_R2>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"hedge_rush\": ad id \"<AD_UNIT_ID_R3>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"vip_tip\": ad id \"<AD_UNIT_ID_R4>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"free_coins\": ad id \"<AD_UNIT_ID_R5>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"rush_extend\": ad id \"<AD_UNIT_ID_R6>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "WARN",
+      "msg": "place \"phase_continue\": ad id \"<AD_UNIT_ID_inter>\" is not a TikTok ad unit id yet",
+      "fix": "replace it with the ad… id from the TikTok console"
+    },
+    {
+      "level": "PASS",
+      "msg": "dashboard JSON is well-formed (7 places, 9 reward keys, 8 items, 0 products)"
+    },
+    {
+      "level": "PASS",
+      "msg": "progress uploads to the cloud: {\"v\":1,\"time\":0.41666666666666663,\"coins\":220,\"stars\":1,\"unlocked\":[],\"up\":{\"bel"
+    },
+    {
+      "level": "PASS",
+      "msg": "onGive saves the progress (HSGame.save in the same call)"
+    },
+    {
+      "level": "PASS",
+      "msg": "new phone: cloud progress restored and saved back unchanged"
+    },
+    {
+      "level": "PASS",
+      "msg": "Android: boots in the app runtime (web tt + HSNative) without errors"
+    },
+    {
+      "level": "PASS",
+      "msg": "Android: a rewarded ad through the app's ad provider completes"
+    },
+    {
+      "level": "INFO",
+      "msg": "Android: has() → share, ads (TikTok missions, cloud and shop are off there)"
+    }
+  ],
+  "sdkFiles": {
+    "hs-game.js": {
+      "original": "cd7375541331fba6c55eb6fb48946f645744b15625d1780724dd4b5f8d992e53",
+      "source": "cd7375541331fba6c55eb6fb48946f645744b15625d1780724dd4b5f8d992e53",
+      "packaged": "cd7375541331fba6c55eb6fb48946f645744b15625d1780724dd4b5f8d992e53",
+      "unchanged": true
+    },
+    "hs-sdk.min.js": {
+      "original": "e9a6a402eb8dd8fcccbb375e31187718c42bfa2a771033d60ea9c92294d33890",
+      "source": "e9a6a402eb8dd8fcccbb375e31187718c42bfa2a771033d60ea9c92294d33890",
+      "packaged": "e9a6a402eb8dd8fcccbb375e31187718c42bfa2a771033d60ea9c92294d33890",
+      "unchanged": true
+    }
+  },
+  "releaseGate": {
+    "ready": false,
+    "missing": [
+      "TikTok App ID",
+      "HS Game ID",
+      "HS SDK key",
+      "7 ad unit IDs"
+    ],
+    "uploaded": false
+  },
+  "scope": "Offline HS checker and browser fixtures only; not a TikTok approval or live-device acceptance test."
+}

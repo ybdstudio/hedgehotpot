@@ -1,0 +1,16 @@
+[
+  {
+    "file": "HedgeHotpot_TikTok_Native_Test.zip",
+    "autoplay": false,
+    "sha256": "d00c3a49511ac9db02d138f72e3b26d80c0b7a248999a4754a244562784ccb19",
+    "game_sha256": "7a99e26aa951d1590af580d22e35ed8b984e16eb0441386fc61afb2280c8647e",
+    "files": 40
+  },
+  {
+    "file": "HedgeHotpot_TikTok_Native_Autoplay_Test.zip",
+    "autoplay": true,
+    "sha256": "b82915d735453c01f12473c208a1f9358d709338a481c1dd1ce376602a768d37",
+    "game_sha256": "446d33fd972947e04d4bd4467377a0f559a04e79e8b6ed4ffb64df85d16da067",
+    "files": 40
+  }
+]

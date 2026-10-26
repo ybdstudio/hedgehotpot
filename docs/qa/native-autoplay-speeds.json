@@ -1,0 +1,33 @@
+{
+  "pass": true,
+  "rates": [
+    {
+      "speed": 1,
+      "measured": 1.0045100451004527
+    },
+    {
+      "speed": 1.5,
+      "measured": 1.500205507603776
+    },
+    {
+      "speed": 2,
+      "measured": 1.9777503090234787
+    },
+    {
+      "speed": 4,
+      "measured": 3.9457459926017124
+    }
+  ],
+  "checks": [
+    "autoplay on boot",
+    "separate device save",
+    "all speed rates",
+    "invalid speed rejected",
+    "pause freezes",
+    "resume continues",
+    "reset retargets bot",
+    "settings toggle and speed selection",
+    "Android boot"
+  ],
+  "errors": []
+}

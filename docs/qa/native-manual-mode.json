@@ -1,0 +1,13 @@
+{
+  "pass": true,
+  "autoplay": false,
+  "speed": 1,
+  "testControls": false,
+  "key": "cat_hotpot_tycoon_v1",
+  "joystickMoved": true,
+  "viewport": {
+    "width": 375,
+    "height": 640
+  },
+  "errors": []
+}
