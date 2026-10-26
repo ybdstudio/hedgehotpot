@@ -1,5 +1,13 @@
 # Progress
 
+## 2026-10-26 — correct game branding to Hedge Tasco
+
+- Owner confirmed exact display name: Hedge Tasco.
+- Rename native/web Settings, mission instructions, share title, project metadata and exported package to Hedge Tasco / hedgetasco.
+- Update loading artwork and app icon; keep restaurant art theme, gameplay, economy, ads configuration and save keys.
+- Rebuild both manual and autoplay offline native archives; credentials still deferred.
+
+
 ## 2026-10-26 — final two-archive separation verified
 
 Done: rebuilt the manual archive from the immutable native/tiktok-release source snapshot; verified it has no autoplay module. Autoplay archive contains the bot and four speed controls only on native/tiktok-autoplay-test. Both HS checks: 0 FAIL / 8 deferred-ID warnings. Measured rates 1.00 / 1.50 / 1.98 / 3.95x. Manual joystick and an actual 4x Settings canvas tap passed at 375x640. Packaging defaults on the autoplay branch now name the autoplay ZIP, preventing accidental replacement of the manual ZIP. No push or upload.
