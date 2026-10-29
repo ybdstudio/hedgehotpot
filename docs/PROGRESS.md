@@ -1,5 +1,12 @@
 # Progress
 
+## 2026-10-29 — connect to new GitHub repository
+
+- Origin now points exclusively to https://github.com/ybdstudio/hedgetasco.git. Old origin and remote-tracking refs removed.
+- Push manual/autoplay branches to the new repo; leave its existing main intact.
+- Updated active repository references in README and AGENTS. Game code unchanged.
+
+
 ## 2026-10-26 — correct game branding to Hedge Tasco
 
 - Owner confirmed exact display name: Hedge Tasco.
