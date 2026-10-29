@@ -1,5 +1,13 @@
 # Progress
 
+## 2026-10-29 — branch tiktok-minis (from ybdstudio/hedgehotpot)
+
+- Created branch `tiktok-minis` from `native/tiktok-release` (main only holds a README).
+- Rebuilt native package: `node tools/build_native.js dist/tiktok-native` -> dist/tiktok-native/hedgetasco, main 1.27 MB / 4 MB, total 11.15 MB / 30 MB.
+- tools/check_native.mjs and HS hs-check 3.2.4: 0 FAIL, 8 WARN (App ID + 7 ad unit IDs missing).
+- HS preview (TikTok Minis mode) boots with no page errors; Entry/Launch Reward buttons visible.
+- Waiting for: TikTok App ID (= HS Game ID), HS SDK key, 7 ad unit IDs; then `--release --zip`.
+
 ## 2026-10-29 — connect to new GitHub repository
 
 - Origin now points exclusively to https://github.com/ybdstudio/hedgetasco.git. Old origin and remote-tracking refs removed.
