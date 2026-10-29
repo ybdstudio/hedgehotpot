@@ -1,8 +1,8 @@
-# Hedge Hotpot Conveyor
+# Hedge Tasco
 
 Native TikTok: nhánh local `native/tiktok-release`, HS SDK 1.1.3. Xem [hướng dẫn và trạng thái release](docs/NATIVE_RELEASE.md). Bản native đã qua kiểm tra offline nhưng đang chờ ID/key thật để tạo ZIP upload chính thức.
 
-Game lẩu băng chuyền với nhân vật nhím, thay cho bản mèo trong ZIP nguồn. Toàn bộ thay đổi hiện ở local của repo `ybdstudio/hedgehotpot`; đã lưu checkpoint local, chưa push.
+Game lẩu băng chuyền với nhân vật nhím, thay cho bản mèo trong ZIP nguồn. Repository hiện tại: `ybdstudio/hedgetasco`. Hai bản native nằm trên các nhánh `native/tiktok-release` và `native/tiktok-autoplay-test`.
 
 ## Xem trước
 
@@ -16,7 +16,7 @@ Game lẩu băng chuyền với nhân vật nhím, thay cho bản mèo trong ZIP
 - Atlas và pivot chuẩn hóa, 8 hướng idle/walk/carry; dùng đúng ảnh nhím từ các ZIP tham chiếu, ưu tiên bản cập nhật v1.2.
 - Tách khách, bàn, ghế, nồi và đĩa thành lớp renderer riêng. Mọi khách thường có thể dùng cả hai phía bàn; không còn giới hạn do ảnh mèo ghép sẵn.
 - Nhân viên bếp dùng sprite người thật trong scene, bỏ overlay cũ làm nhân vật phình to. Ghế băng chuyền/ghế chờ được vẽ riêng, không biến mất khi có khách.
-- Icon, loading, chia sẻ, bảng hiệu, rèm, đèn lồng, tượng, bình phong, thảm và huy hiệu quầy bếp/ghế đổi sang nhím. Đổi tên hiển thị thành Hedge Hotpot.
+- Icon, loading, chia sẻ, bảng hiệu, rèm, đèn lồng, tượng, bình phong, thảm và huy hiệu quầy bếp/ghế đổi sang nhím. Đổi tên hiển thị thành Hedge Tasco.
 - Giữ chủ đề lẩu, kinh tế, nhiệm vụ, save key và cấu hình SDK/ads gốc. `cust_orange`, `cust_gray`, `sit_cat` và thư mục native `meow-hotpot` chỉ là định danh tương thích.
 
 ## Build
