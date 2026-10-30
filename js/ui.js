@@ -189,7 +189,7 @@
         <div class="row toggle"><div class="meta"><b>Autoplay demo</b><small>Let the hedgehog play by itself (testing)</small></div><button class="btn ${this.app.autoplay ? '' : 'gray'}" id="tAuto">${this.app.autoplay ? 'On' : 'Off'}</button></div>
         <div class="row"><div class="meta"><b>Progress</b><small>Played ${Math.floor(play / 60)}m ${play % 60}s · ${g.stat('paid')} customers served · saved automatically</small></div><button class="btn" id="tSave">Save</button></div>
         <div class="row"><div class="meta"><b>Reset restaurant</b><small>Deletes your save on this device</small></div><button class="btn pink" id="tReset">Reset</button></div>
-        <div class="sec">Hedge Tasco · v${CST.CONFIG.VERSION}.0</div>`;
+        <div class="sec">Hedge Hotpot · v${CST.CONFIG.VERSION}.0</div>`;
       $('tSound').onclick = () => { S.sound = !S.sound; CST.Audio.on = S.sound; g.save(); this.refreshPanel(); };
       $('tVib').onclick = () => { S.vib = !S.vib; g.save(); this.refreshPanel(); };
       $('tAuto').onclick = () => { this.app.setAutoplay(!this.app.autoplay); if (!this.app.autoplay) this.app.speed = 1; this.syncAuto && this.syncAuto(); this.refreshPanel(); };

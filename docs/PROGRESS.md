@@ -1,16 +1,24 @@
+## 2026-10-30 — Restore Hedge Hotpot branding
+
+Owner requested Hedge Hotpot everywhere: display strings, share/mission text, project metadata, package folder, packaging scripts, docs and original icon/loading artwork. Save identifiers preserved. Rebuilt native test ZIP; credentials deferred.
+
+## 2026-10-29 — Rebuilt and verified GitHub artifacts
+
+Built isolated snapshots of native/tiktok-release (2e8cddc) and native/tiktok-autoplay-test (7980679), confirmed remote hashes. Both ZIPs: 40 root-native files, CRC passed, exact SDK match to installed kit, 0 HS FAIL / 8 deferred-ID WARN. Confirmed manual excludes autoplay module; autoplay includes it. Autoplay runtime passed speed, pause/resume, reset, Settings and Android boot checks with no page errors. Outputs and SHA256 report are in workspace parent with Verified_20261029 names. Credentials remain empty; live TikTok upload/device acceptance pending. No code or push this session.
+
 # Progress
 
 ## 2026-10-29 — connect to new GitHub repository
 
-- Origin now points exclusively to https://github.com/ybdstudio/hedgetasco.git. Old origin and remote-tracking refs removed.
+- Origin now points exclusively to https://github.com/ybdstudio/hedgehotpot.git. Old origin and remote-tracking refs removed.
 - Push manual/autoplay branches to the new repo; leave its existing main intact.
 - Updated active repository references in README and AGENTS. Game code unchanged.
 
 
-## 2026-10-26 — correct game branding to Hedge Tasco
+## 2026-10-26 — correct game branding to Hedge Hotpot
 
-- Owner confirmed exact display name: Hedge Tasco.
-- Rename native/web Settings, mission instructions, share title, project metadata and exported package to Hedge Tasco / hedgetasco.
+- Owner confirmed exact display name: Hedge Hotpot.
+- Rename native/web Settings, mission instructions, share title, project metadata and exported package to Hedge Hotpot / hedgehotpot.
 - Update loading artwork and app icon; keep restaurant art theme, gameplay, economy, ads configuration and save keys.
 - Rebuild both manual and autoplay offline native archives; credentials still deferred.
 

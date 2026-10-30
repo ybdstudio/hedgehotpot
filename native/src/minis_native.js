@@ -87,7 +87,7 @@
       if (!HSGame.has('tiktok_missions')) return;
       this.app.ui.popup({ title:'Launch Reward', hdr:'hdr_mega', items:[
         {t:'step',n:1,text:'Tap Go below.'}, {t:'step',n:2,text:'Add the game to your home screen.'},
-        {t:'step',n:3,text:'Open Hedge Tasco from the new icon.'},
+        {t:'step',n:3,text:'Open Hedge Hotpot from the new icon.'},
         {t:'step',n:4,text:'TikTok verifies completion and sends the reward.'},
         {t:'cap',text:CST.HS.rewardText('tiktok_shortcut')},
         {t:'btn',label:'Go',style:'green',fn:() => HSGame.tiktokMission.start('shortcut')}
@@ -97,7 +97,7 @@
       if (!HSGame.has('tiktok_missions')) return;
       this.app.ui.popup({ title:'Entry Reward', hdr:'hdr_mega', items:[
         {t:'step',n:1,text:'Go to your TikTok profile.'}, {t:'step',n:2,text:'Open TikTok Minis.'},
-        {t:'step',n:3,text:'Open Hedge Tasco from there.'},
+        {t:'step',n:3,text:'Open Hedge Hotpot from there.'},
         {t:'step',n:4,text:'Come back; TikTok verifies and sends the reward.'},
         {t:'cap',text:CST.HS.rewardText('tiktok_profile')},
         {t:'btn',label:'Go',style:'green',fn:() => HSGame.tiktokMission.start('profile')}
@@ -108,7 +108,7 @@
       const available = HSGame.available('share');
       this.app.ui.popup({ title:'Share', hdr:'hdr_share', items:[
         {t:'img',art:'share_art'}, {t:'cap',text:available ? 'Share the game with friends. ' + CST.HS.rewardText('share') : 'Reward already received today.'},
-        {t:'btn',label:'Share',style:'green',fn:() => HSGame.share({title:'Hedge Tasco',subtitle:'Run a cozy hedgehog hotpot restaurant.'})}
+        {t:'btn',label:'Share',style:'green',fn:() => HSGame.share({title:'Hedge Hotpot',subtitle:'Run a cozy hedgehog hotpot restaurant.'})}
       ] });
     },
     popCoins() {

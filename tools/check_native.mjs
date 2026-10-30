@@ -6,7 +6,7 @@ import { resolve, join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const dir = resolve(process.argv[2] || join(root, 'dist/tiktok-native/hedgetasco'));
+const dir = resolve(process.argv[2] || join(root, 'dist/tiktok-native/hedgehotpot'));
 const kit = join(root,'vendor/hs-sdk-1.1.3');
 const result = spawnSync(process.execPath,[join(kit,'hs-check.mjs'),dir,'--json'],{encoding:'utf8',timeout:45000});
 if (result.error) throw result.error;

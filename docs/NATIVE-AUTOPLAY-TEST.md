@@ -14,8 +14,8 @@ uses a separate key; do not configure production cloud credentials for soak test
 Build on the autoplay branch:
 
     node tools/build_native.js dist/tiktok-autoplay
-    node tools/check_native.mjs dist/tiktok-autoplay/hedgetasco
-    python tools/package_native_test.py --package dist/tiktok-autoplay/hedgetasco --output ../HedgeTasco_TikTok_Native_Autoplay_Test.zip
+    node tools/check_native.mjs dist/tiktok-autoplay/hedgehotpot
+    python tools/package_native_test.py --package dist/tiktok-autoplay/hedgehotpot --output ../HedgeHotpot_TikTok_Native_Autoplay_Test.zip
 
 The manual archive was built from the baseline before the autoplay changes.
 To reproduce it, switch to `native/tiktok-release` and follow AGENTS.md.

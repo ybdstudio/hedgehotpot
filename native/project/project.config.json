@@ -1,8 +1,8 @@
 {
   "appid": "",
-  "projectname": "hedgetasco",
+  "projectname": "hedgehotpot",
   "compileType": "game",
-  "description": "Hedge Tasco - native hedgehog hotpot restaurant",
+  "description": "Hedge Hotpot - native hedgehog hotpot restaurant",
   "setting": {
     "es6": true,
     "minified": true,
