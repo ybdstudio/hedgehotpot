@@ -247,7 +247,7 @@
         R.push({ title: 'Vibration', btn: [st.vib ? 'On' : 'Off', st.vib ? 'green' : 'toggleOff', () => { st.vib = !st.vib; g.save(); }, true] });
         R.push({ title: 'Progress', sub: `Played ${Math.floor(play / 60)}m ${play % 60}s · ${g.stat('paid')} customers · auto-saved`, btn: ['Save', 'green', () => { g.save(); this.toast('Saved!', 'c_fx_heart'); }] });
         R.push({ title: 'Reset restaurant', sub: 'Deletes your save on this device', btn: ['Reset', 'pink', () => this.confirmReset()] });
-        R.push({ sec: `Hedge Tasco · v${CST.CONFIG.VERSION}.0` });
+        R.push({ sec: `Hedge Hotpot · v${CST.CONFIG.VERSION}.0` });
       }
       return R;
     }
@@ -339,7 +339,7 @@
           c.fillStyle = this.grad(yy, yy + 80, '#1f4f9a', '#123672'); this.rr(ix, yy, iw, 80, 14); c.fill();
           this.card(ix + 8, yy + 8, 118, 64, 10, '#fff'); this.text('Profile', ix + 16, yy + 18, 10, '#333');
           c.fillStyle = '#fe2c55'; this.rr(ix + 14, yy + 26, 82, 13, 5); c.fill(); this.text('Recently played', ix + 18, yy + 33, 8.5, '#fff');
-          this.card(ix + 14, yy + 44, 106, 24, 7, '#f2f2f2', '#ffcf3d'); this.icon('app_icon', ix + 28, yy + 56, 20); this.text('Hedge Tasco', ix + 42, yy + 56, 7.5, '#333');
+          this.card(ix + 14, yy + 44, 106, 24, 7, '#f2f2f2', '#ffcf3d'); this.icon('app_icon', ix + 28, yy + 56, 20); this.text('Hedge Hotpot', ix + 42, yy + 56, 7.5, '#333');
           this.text('Find us under', ix + 136, yy + 30, 12, '#fff'); this.text('Profile ▸ Recently played', ix + 136, yy + 48, this.fit('Profile ▸ Recently played', 12, iw - 146), '#fff');
         }
         yy += ih + 8;

@@ -98,8 +98,8 @@
     popAdd() {
       const m = this.st(), M = CST.CONFIG.MINIS, n = this.amount(M.addMinutes);
       const draw = can2 => this.pop('Home Screen Gift', 'hdr_mega', this.steps(m.added ? 'Added ✓' : 'Add to Home Screen',
-        { text: 'Open Hedge Tasco from the icon on your home screen.', art: `<img class="mp-strip" src="${ART('launch_phone')}" alt="">` }, n, can2,
-        can2 ? 'Thanks for adding Hedge Tasco!' : 'Open the game from your home screen to claim.') + `<p class="mp-star">+${M.addStars}★ bonus</p>`);
+        { text: 'Open Hedge Hotpot from the icon on your home screen.', art: `<img class="mp-strip" src="${ART('launch_phone')}" alt="">` }, n, can2,
+        can2 ? 'Thanks for adding Hedge Hotpot!' : 'Open the game from your home screen to claim.') + `<p class="mp-star">+${M.addStars}★ bonus</p>`);
       const wire = can2 => {
         draw(can2);
         $('mpGo').onclick = () => {
@@ -120,9 +120,9 @@
     // ---- Revisit gift (TikTok profile sidebar): once a day
     popRevisit() {
       const m = this.st(), n = this.amount(CST.CONFIG.MINIS.revisitMinutes), done = m.revisitDay === today();
-      const side = `<div class="mp-side"><div class="ph"><span>Profile</span><span class="tab">Recently played</span><div class="tile"><img src="${ART('app_icon')}" alt=""><b>Hedge Tasco</b></div></div><p>Find us under<br><b>Profile ▸ Recently played</b></p></div>`;
+      const side = `<div class="mp-side"><div class="ph"><span>Profile</span><span class="tab">Recently played</span><div class="tile"><img src="${ART('app_icon')}" alt=""><b>Hedge Hotpot</b></div></div><p>Find us under<br><b>Profile ▸ Recently played</b></p></div>`;
       const wire = can2 => {
-        this.pop('Revisit Gift', 'hdr_mega', this.steps('Go', { text: 'Come back to Hedge Tasco from your TikTok profile.', art: side }, n, can2 && !done,
+        this.pop('Revisit Gift', 'hdr_mega', this.steps('Go', { text: 'Come back to Hedge Hotpot from your TikTok profile.', art: side }, n, can2 && !done,
           done ? 'Come back tomorrow for another gift.' : 'Reopen the game from your profile to claim.'));
         $('mpGo').onclick = () => { const o = T(); if (can(o, 'startEntranceMission')) o.startEntranceMission({ complete: () => { } }); else { m.visited = today(); this.g.save(); wire(true); } };
         $('mpClaim').onclick = () => { if (!(can2 && !done)) return; m.revisitDay = today(); this.closePop(); this.grant(n, 0, 'Revisit gift'); };
@@ -152,13 +152,13 @@
         return;
       }
       if (t && typeof t.share === 'function') {
-        try { t.share(r => { if (r && r.is_success) ok(); else if (!fromMenu) fail(); }, { title: 'Hedge Tasco', desc: 'Run a cozy hedgehog hotpot bar with me!', query: { from: 'share_gift' } }); } catch (e) { fail(); }
+        try { t.share(r => { if (r && r.is_success) ok(); else if (!fromMenu) fail(); }, { title: 'Hedge Hotpot', desc: 'Run a cozy hedgehog hotpot bar with me!', query: { from: 'share_gift' } }); } catch (e) { fail(); }
         return;
       }
       if (fromMenu) return;
       // outside TikTok (browser / preview): system share sheet, else copy the link
       const copy = () => { try { navigator.clipboard.writeText(location.href).then(() => { this.app.ui.toast('Link copied – send it to a friend!', 'c_fx_heart', true); ok(); }, ok); } catch (e) { ok(); } };
-      if (navigator.share) navigator.share({ title: 'Hedge Tasco', text: 'Run a cozy hedgehog hotpot bar with me!', url: location.href }).then(ok).catch(err => { if (err && err.name === 'AbortError') fail(); else copy(); });
+      if (navigator.share) navigator.share({ title: 'Hedge Hotpot', text: 'Run a cozy hedgehog hotpot bar with me!', url: location.href }).then(ok).catch(err => { if (err && err.name === 'AbortError') fail(); else copy(); });
       else copy();
     },
     // ---- R5: free coins from the '+' next to the coin counter
