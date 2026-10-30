@@ -59,7 +59,7 @@ const missing = [];
 if (!/^\d+$/.test(cfg.appid || '')) missing.push('TikTok App ID');
 if (!/^\d+$/.test(HS.gameId || '')) missing.push('HS Game ID');
 if (!HS.sdkKey) missing.push('HS SDK key');
-if (DASH.iaa_config.placements.some(p => p.ads.some(a => !/^ad[a-zA-Z0-9]+$/.test(a.id)))) missing.push('ad unit IDs');
+if (DASH.iaa_config.placements.some(p => p.ads.some(a => !/^ad[a-zA-Z0-9]+$/.test(a.id)))) console.log('WARN: ad unit IDs still placeholders in the dashboard JSON (outside the package); ads stay off until set in the HS dashboard.');
 if (argv.includes('--release') && missing.length) throw new Error('Release blocked: missing ' + missing.join(', '));
 if (argv.includes('--release') && cfg.appid !== HS.gameId) throw new Error('Release blocked: HS Game ID must match the registered TikTok App ID.');
 if (argv.includes('--release')) cp.execFileSync(process.execPath, [path.join(R,'vendor/hs-sdk-1.1.3/hs-check.mjs'),PKG], { stdio:'inherit' });

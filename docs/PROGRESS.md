@@ -1,5 +1,13 @@
 # Progress
 
+## 2026-10-30 — TikTok App ID + HS SDK key applied
+
+- appid / HS Game ID = 7700894154826811412 (project.config.json); SDK key in ignored native/hs-config.json.
+- Ad unit IDs only live in the dashboard JSON outside the package, so build_native.js --release now warns about them instead of blocking.
+- `node tools/build_native.js dist/tiktok-native --release --zip` -> dist/tiktok-native/hedgetasco-tiktok.zip (40 files, 11.2 MB, main 1.3 MB). hs-check 0 FAIL / 7 WARN (ad unit IDs).
+- HS preview: logs in, cloud + missions + share available, no page errors.
+- Pending: 7 TikTok ad unit IDs -> paste iaa_config into HS dashboard; device test.
+
 ## 2026-10-29 — branch tiktok-minis (from ybdstudio/hedgehotpot)
 
 - Created branch `tiktok-minis` from `native/tiktok-release` (main only holds a README).
