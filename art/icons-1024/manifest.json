@@ -1,0 +1,29 @@
+[
+  {
+    "file": "hedge-hotpot-01-warm-classic-1024.png",
+    "width": 1024,
+    "height": 1024,
+    "format": "PNG",
+    "mode": "RGB",
+    "opaque": true,
+    "sha256": "0499e8ee9a52b4d062ee2f6ce2e2fa28f0dc2265c8ee6c6b3c59dfb3b5443925"
+  },
+  {
+    "file": "hedge-hotpot-02-golden-spoon-1024.png",
+    "width": 1024,
+    "height": 1024,
+    "format": "PNG",
+    "mode": "RGB",
+    "opaque": true,
+    "sha256": "f82369da421a90ef95b811124c324c58aca9e2e78d354abe941e6c77eb169eaa"
+  },
+  {
+    "file": "hedge-hotpot-03-jade-mascot-1024.png",
+    "width": 1024,
+    "height": 1024,
+    "format": "PNG",
+    "mode": "RGB",
+    "opaque": true,
+    "sha256": "13f44fd5b4fe44fdddce61832301b566410195d0e253b1a632a898ae96eeed95"
+  }
+]

@@ -1,3 +1,7 @@
+## 2026-10-31 — Main includes manual native game and promotional assets
+
+Owner requested moving the work into main. Main now includes native/tiktok-release plus all icon and special-effect artwork from 716fbb3. Autoplay and speed controls remain isolated on native/tiktok-autoplay-test. No gameplay changes in this integration.
+
 ## 2026-10-30 — Restore Hedge Hotpot branding
 
 Owner requested Hedge Hotpot everywhere: display strings, share/mission text, project metadata, package folder, packaging scripts, docs and original icon/loading artwork. Save identifiers preserved. Rebuilt native test ZIP; credentials deferred.
